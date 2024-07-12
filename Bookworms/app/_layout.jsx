@@ -3,7 +3,7 @@ import React from 'react'
 
 const RootLayout = () => {
   return (
-    <View>
+    <View className="text-2xl">
       <Text>RootLayout</Text>
     </View>
   )
