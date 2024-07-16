@@ -17,9 +17,9 @@ const index = () => {
       <ScrollView contentContainerStyle={{ height: "100%", flexGrow: 1, }}>
 
         {/* This will contain all of the elements */}
-        <View className="w-full h-full px-4 items-center py-6">
+        <View className="px-4 items-center py-6 flex-1 justify-between">
           {/* This view will contain the title and the logo */}
-          <View className="h-30 justify-center">
+          <View className="justify-center flex-1">
             <Text className="text-5xl text-plight font-bodoniitalic text-center py-8">
               Bookworms
             </Text>
@@ -30,7 +30,7 @@ const index = () => {
           </View>
 
           {/* This view will contain both of the buttons */}
-          <View className="h-70 justify-center">
+          <View className="h-30 justify-end mb-4">
             <OpenButton title={ "Sign Up" }
               handlePress={() => router.push("/signup")}
             />
