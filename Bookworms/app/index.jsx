@@ -33,9 +33,17 @@ const index = () => {
           <View className="h-30 justify-end mb-4">
             <OpenButton title={ "Sign Up" }
               handlePress={() => router.push("/signup")}
+              buttonSize={"px-20 pb-2 pt-5"}
+              buttonColor={"bg-plight"}
+              textSize={"text-2xl pt-3"}
+              textColor={"text-accentdark"}
             />
             <OpenButton title={ "Log In" }
               handlePress={() => router.push("/login")}
+              buttonSize={"px-20 pb-2 pt-5"}
+              buttonColor={"bg-plight"}
+              textSize={"text-2xl pt-3"}
+              textColor={"text-accentdark"}
             />
 
           </View>
