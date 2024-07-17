@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     }, 
     buttonShadow: {
         shadowColor: '#1B0B01', // White shadow color
-        shadowOffset: { width: 0, height: 5 },
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.5,
         shadowRadius: 20,
         elevation: 5 // For Android elevation
