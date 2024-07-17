@@ -26,11 +26,12 @@ const index = () => {
               Bookworms
             </Text>
 
-            <Image
-              source={require('../assets/images/Logo.png')}
-              style={{ width: 240, height: 160, 
-                alignContent: "center", justifyContent: "center"}}
-            />
+            <View className="justify-center items-center">
+              <Image
+                source={require('../assets/images/Logo.png')}
+                style={{ width: 240, height: 160 }}
+              />
+            </View>
 
             <Text className="font-inknut text-accentlight text-lg text-center 
             py-2">
