@@ -12,10 +12,9 @@ const OpenButton = ({title, handlePress, buttonSize, buttonColor, textSize, text
                     ${buttonSize}`} 
                     style={styles.buttonShadow}>
 
-                <Text className={`font-inknut justify-center items-center
+                <Text className={`font-inknut justify-center items-center pt-4
                     ${textSize}
-                    ${textColor}`}
-                    style={styles.textShadow}>
+                    ${textColor}`}>
                     { title }
                 </Text>
             </TouchableOpacity>
@@ -24,11 +23,6 @@ const OpenButton = ({title, handlePress, buttonSize, buttonColor, textSize, text
 }
 
 const styles = StyleSheet.create({
-    textShadow: {
-        textShadowColor: '#FFFFFF', // White shadow color
-        textShadowOffset: { width: 0, height: 5 },
-        textShadowRadius: 20
-    }, 
     buttonShadow: {
         shadowColor: '#1B0B01', // White shadow color
         shadowOffset: { width: 0, height: 3 },
