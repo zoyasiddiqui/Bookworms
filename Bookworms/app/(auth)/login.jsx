@@ -1,30 +1,23 @@
-import { View, Text, AppState, Alert } from 'react-native'
+import { View, Text, Alert } from 'react-native'
 import { supabase } from '../../lib/supabase'
 import React from 'react'
 
-// Supabase Auth continuously refreshes to check state changes (token refreshed or signed out)
-AppState.addEventListener('change', (state) => {
-  if (state === 'active') {
-    supabase.auth.startAutoRefresh()
-  } else {
-    supabase.auth.stopAutoRefresh()
-  }
-})
-
 const Login = () => {
-  const [email, setEmail] = useState('') // unless we want this to be username, or want option to use either
-  const [password, setPassword] = useState('')
+  const [form, setForm] = useState({
+    email: '',
+    password: ''
+  })
   const [loading, setLoading] = useState(false)
 
-  // for when use presses the login button
+  // for when user presses the login button
   async function login() {
     setLoading(true)
     const { error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
+      email: form.email,
+      password: form.password,
     })
 
-    if (error) Alert.alert(error.message)
+    if (error) Alert.alert(error.message) // should test if this detects empty fields
     setLoading(false)
   }
 

@@ -4,13 +4,26 @@ import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from "rea
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NativeWindStyleSheet } from "nativewind";
 import OpenButton from "../../Bookworms/components/OpenButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { supabase } from '../lib/supabase'
 
 NativeWindStyleSheet.setOutput({
   default: "native",
 });
 
 const index = () => {
+  // will eventually use to prevent the user from relogging in everytime they open the app
+  const [session, setSession] = useState(null) 
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
 
   return(
     <SafeAreaView className="bg-bglight h-full flex">
