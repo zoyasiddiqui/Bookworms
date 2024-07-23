@@ -12,6 +12,8 @@ const SignUp = () => {
   // when user presses the sign in button
   async function signUp() {
     setLoading(true)
+
+    // sends a sign-up request to Supabase
     const {
       data: { session },
       error,
@@ -21,6 +23,8 @@ const SignUp = () => {
     })
 
     if (error) Alert.alert(error.message)
+
+    // no session means the user needs to verify their email
     if (!session) Alert.alert('Please check your inbox for email verification!')
     setLoading(false)
   }

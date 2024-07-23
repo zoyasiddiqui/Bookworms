@@ -9,7 +9,7 @@ const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
-    storage: AsyncStorage,
+    storage: AsyncStorage, // how auth data is stored
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: false,
@@ -18,9 +18,12 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
 
 // Supabase Auth continuously refreshes to check state changes (token refreshed or signed out)
 AppState.addEventListener('change', (state) => {
+  // app is in the foreground
   if (state === 'active') {
     supabase.auth.startAutoRefresh()
+
+  // app is in the background/inactive
   } else {
-    supabase.auth.stopAutoRefresh()
+    supabase.auth.stopAutoRefresh() // to save resources
   }
 })

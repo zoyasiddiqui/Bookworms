@@ -12,6 +12,8 @@ const Login = () => {
   // for when user presses the login button
   async function login() {
     setLoading(true)
+
+    // sends a sign-in request to Supabase
     const { error } = await supabase.auth.signInWithPassword({
       email: form.email,
       password: form.password,
