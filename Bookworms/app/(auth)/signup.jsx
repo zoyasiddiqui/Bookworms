@@ -18,6 +18,8 @@ const SignUp = () => {
     if (form.password !== form.confirmPassword) {
       Alert.alert("Your password doesn't match")
       setLoading(false)
+
+      // maybe we should empty the comfirm password and/or password field
       return
     }
 
