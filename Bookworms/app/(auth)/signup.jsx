@@ -5,13 +5,21 @@ import React from 'react'
 const SignUp = () => {
   const [form, setForm] = useState({
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: '',
   })
   const [loading, setLoading] = useState(false)
 
   // when user presses the sign in button
   async function signUp() {
     setLoading(true)
+
+    // check if the user retyped their password correctly
+    if (form.password !== form.confirmPassword) {
+      Alert.alert("Your password doesn't match")
+      setLoading(false)
+      return
+    }
 
     // sends a sign-up request to Supabase
     const {
