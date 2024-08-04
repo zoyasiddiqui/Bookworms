@@ -1,8 +1,17 @@
-import { View, Text, Alert } from 'react-native'
+import { View, Text, Alert, ScrollView } from 'react-native'
 import { supabase } from '../../lib/supabase'
 import React from 'react'
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+  default: "native",
+});
 
 const Login = () => {
+
+  // == Setting up Auth ==
   const [form, setForm] = useState({
     email: '',
     password: ''
@@ -23,11 +32,16 @@ const Login = () => {
     setLoading(false)
   }
 
-  return (
-    <View>
-      <Text>Login</Text>
-    </View>
-  )
+  // == Components to Return ==
+  return ( 
+    <SafeAreaView className="bg-bglight h-full flex">
+      <StatusBar/>
+      <ScrollView contentContainerStyle={{ height: "100%", flexGrow: 1, }}>
+      
+      </ScrollView>
+    </SafeAreaView>
+  );
+
 }
 
 export default Login
