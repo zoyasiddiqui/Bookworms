@@ -1,4 +1,5 @@
 import { View, Text, Alert, ScrollView } from 'react-native'
+import { useState } from 'react';
 import { supabase } from '../../lib/supabase'
 import React from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";

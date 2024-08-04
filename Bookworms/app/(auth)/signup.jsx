@@ -1,6 +1,7 @@
 import { View, Text, Alert, ScrollView } from 'react-native'
 import { supabase } from '../../lib/supabase'
 import React from 'react'
+import { useState } from 'react'
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import { NativeWindStyleSheet } from "nativewind";
