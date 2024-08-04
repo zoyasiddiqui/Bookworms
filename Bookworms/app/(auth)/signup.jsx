@@ -1,6 +1,13 @@
-import { View, Text, Alert } from 'react-native'
+import { View, Text, Alert, ScrollView } from 'react-native'
 import { supabase } from '../../lib/supabase'
 import React from 'react'
+import { SafeAreaView } from "react-native-safe-area-context";
+import { StatusBar } from "expo-status-bar";
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+  default: "native",
+});
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -40,10 +47,13 @@ const SignUp = () => {
   }
 
   return (
-    <View>
-      <Text>SignUp</Text>
-    </View>
-  )
+    <SafeAreaView className="bg-bglight h-full flex">
+      <StatusBar/>
+      <ScrollView contentContainerStyle={{ height: "100%", flexGrow: 1, }}>
+      
+      </ScrollView>
+    </SafeAreaView>
+  );
 }
 
 export default SignUp
