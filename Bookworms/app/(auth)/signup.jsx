@@ -50,21 +50,27 @@ const SignUp = () => {
     }
 
     // sends a sign-up request to Supabase
-    const {
-      data: { session },
-      error,
-    } = await supabase.auth.signUp({
-      firstName: form.firstName,
-      lastName: form.lastName,
+    const { data: { session }, error,} = await supabase.auth.signUp({
       email: form.email,
       password: form.password,
+      options: {
+        data: {
+          firstName: form.firstName,
+          lastName: form.lastName,
+        }
+      }
     })
 
-    if (error) Alert.alert(error.message)
-
-    // no session means the user needs to verify their email
-    if (!session) Alert.alert('Please check your inbox for email verification!')
-    setLoading(false)
+    if (error){
+      Alert.alert(error.message)
+      setLoading(false)
+    } 
+    else {
+      // no session means the user needs to verify their email
+      if (!session) Alert.alert('Please check your inbox for email verification!')
+      setLoading(false)
+    }
+    
   }
 
   return (
