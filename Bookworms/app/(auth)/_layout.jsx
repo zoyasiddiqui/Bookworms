@@ -1,6 +1,5 @@
 import { Redirect, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Loader } from "../../../Bookworms/components/Loader";
 import React from "react";
 
 const AuthLayout = () => {
