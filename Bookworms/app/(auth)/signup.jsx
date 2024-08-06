@@ -7,6 +7,8 @@ import { StatusBar } from "expo-status-bar";
 import { NativeWindStyleSheet } from "nativewind";
 import FormField from "../../../Bookworms/components/FormField"
 import OpenButton from "../../../Bookworms/components/OpenButton";
+import Header from "../../../Bookworms/components/Header";
+import { Redirect, router } from "expo-router";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -70,11 +72,13 @@ const SignUp = () => {
       <StatusBar/>
       <ScrollView contentContainerStyle={{ height: "100%", flexGrow: 1, }}>
 
-        <Text className="text-4xl text-plight font-bodonibold text-center 
-          py-4 mt-10"
-          style={styles.headerShadow}>
-            Sign Up
-        </Text>
+        <Header
+          title="Sign Up"
+          font="font-bodonibold"
+          size="text-4xl"
+          padding="pt-4 pb-2"
+          margin="mt-10"
+        />
 
         <FormField
           title="First Name"
@@ -102,33 +106,37 @@ const SignUp = () => {
           title="Password"
           value={form.password}
           handleChangeText={(e) => setForm({...form, password: e})}
+          otherStyles=""
         />
 
         <FormField
           title="Confirm Password"
           value={form.confirmPassword}
           handleChangeText={(e) => setForm({...form, confirmPassword: e})}
+          otherStyles="mb-4"
         />
 
         <OpenButton title={ "Submit" }
           handlePress={() => signUp()}
           buttonSize={"px-40 py-2"}
           buttonColor={"bg-plight"}
+          buttonPadding={"py-2"}
           textSize={"text-base"}
           textColor={"text-accentdark"}
+        />
+
+        <OpenButton title={ "Already have an account? Log In" }
+          handlePress={() => router.push("/login")}
+          buttonSize={"px-100 py-2"}
+          buttonColor={""}
+          buttonPadding={""}
+          textSize={"text-base"}
+          textColor={"text-accentlight"}
         />
 
       </ScrollView>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  headerShadow: {
-    textShadowColor: '#1B0B01', 
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 1,
-  },
-})
 
 export default SignUp

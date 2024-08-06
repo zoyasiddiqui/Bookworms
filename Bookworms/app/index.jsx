@@ -4,6 +4,7 @@ import { View, Text, Image, ScrollView, StyleSheet, TouchableOpacity } from "rea
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NativeWindStyleSheet } from "nativewind";
 import OpenButton from "../../Bookworms/components/OpenButton";
+import Header from "../../Bookworms/components/Header";
 import { useState, useEffect } from "react";
 import { supabase } from '../lib/supabase';
 
@@ -40,11 +41,14 @@ const index = () => {
         <View className="px-4 items-center flex-1 justify-between">
           {/* This view will contain the title and the logo */}
           <View className="justify-center items-centers flex-1">
-            <Text className="text-6xl text-plight font-bodoniitalic text-center 
-            py-4 mt-5"
-            style={styles.headerShadow}>
-              Bookworms
-            </Text>
+
+            <Header
+              title="Bookworms"
+              font="font-bodoniitalic"
+              size="text-6xl"
+              padding="py-4"
+              margin="mb-8"
+            />
 
             <View className="justify-center items-center pb-8">
               <Image
@@ -69,6 +73,7 @@ const index = () => {
               handlePress={() => router.push("/signup")}
               buttonSize={"px-20 py-3"}
               buttonColor={"bg-plight"}
+              buttonPadding={"py-4"}
               textSize={"text-xl"}
               textColor={"text-accentdark"}
             />
@@ -76,6 +81,7 @@ const index = () => {
               handlePress={() => router.push("/login")}
               buttonSize={"px-20 py-3"}
               buttonColor={"bg-plight"}
+              buttonPadding={"py-4"}
               textSize={"text-xl"}
               textColor={"text-accentdark"}
             />
@@ -87,13 +93,5 @@ const index = () => {
   );
   
 };
-
-const styles = StyleSheet.create({
-  headerShadow: {
-    textShadowColor: '#1B0B01', 
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 1,
-  },
-})
 
 export default index;
