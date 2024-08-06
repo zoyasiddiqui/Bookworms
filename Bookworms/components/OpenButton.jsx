@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const OpenButton = ({title, handlePress, buttonSize, buttonColor, textSize, textColor}) => {
+const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding, textSize, textColor}) => {
     return(
-        <View className="flex justify-center items-center py-4">
+        <View className={`flex justify-center items-center ${buttonPadding}`}>
             <TouchableOpacity
                 onPress={handlePress}
                 activeOpacity={0.6}

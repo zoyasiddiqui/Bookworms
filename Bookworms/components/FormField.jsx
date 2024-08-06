@@ -15,9 +15,9 @@ const FormField = ({
 
   return (
     <View className={`${otherStyles}`}>
-      <Text className="font-inknutthin text-xl pt-8 px-5">{title}</Text>
+      <Text className="font-inknutthin text-base pt-8 px-5">{title}</Text>
 
-      <View className="w-95 h-16 px-4 mx-4 bg-accentdark rounded-2xl border-2 border-plight focus:border-slight flex flex-row items-center">
+      <View className="w-95 h-14 px-4 mx-4 bg-accentdark rounded-2xl border-2 border-plight focus:border-slight flex flex-row items-center">
         <TextInput
           className="font-inknutthin text-accentlight text-base flex-1"
           value={value}
@@ -28,7 +28,7 @@ const FormField = ({
           {...props}
         />
 
-        {(title === "Password" || title === "Confirm Password") && (
+        {(title === "Password") && (
           <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
             <Image
               source={!showPassword ? icons.eye : icons.eyeHide}
