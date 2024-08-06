@@ -29,9 +29,17 @@ const SignUp = () => {
   async function signUp() {
     setLoading(true)
 
+    //check that all fields have something in them
+    if (form.firstName == '' || form.lastName == '' || form.email == '' || form.password == '') {
+      Alert.alert("Please ensure no fields are empty.")
+      setLoading(false)
+
+      return;
+    }
+
     // check if the user retyped their password correctly
     if (form.password !== form.confirmPassword) {
-      Alert.alert("Your password doesn't match")
+      Alert.alert("Your passwords don't match.")
       setLoading(false)
 
       //empty the confirm password field
@@ -94,11 +102,16 @@ const SignUp = () => {
           title="Password"
           value={form.password}
           handleChangeText={(e) => setForm({...form, password: e})}
-          otherStyles="mb-8"
+        />
+
+        <FormField
+          title="Confirm Password"
+          value={form.confirmPassword}
+          handleChangeText={(e) => setForm({...form, confirmPassword: e})}
         />
 
         <OpenButton title={ "Submit" }
-          handlePress={signUp}
+          handlePress={() => signUp()}
           buttonSize={"px-40 py-2"}
           buttonColor={"bg-plight"}
           textSize={"text-base"}
