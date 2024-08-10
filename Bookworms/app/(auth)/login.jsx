@@ -1,4 +1,4 @@
-import { View, Text, Alert, ScrollView } from 'react-native'
+import { View, Text, Alert, ScrollView, TouchableOpacity } from 'react-native'
 import { useState } from 'react';
 import { supabase } from '../../lib/supabase'
 import React from 'react'
@@ -68,21 +68,24 @@ const Login = () => {
 
       <OpenButton title={ "Submit" }
         handlePress={() => login()}
-        buttonSize={"px-40 py-2"}
+        buttonSize={"w-80 h-16"}
         buttonColor={"bg-plight"}
         buttonPadding={"py-6"}
         textSize={"text-base"}
         textColor={"text-accentdark"}
       />
 
-      <OpenButton title={ "Don't have an account? Sign Up" }
-        handlePress={() => router.push("/signup")}
-        buttonSize={"px-100 py-2"}
-        buttonColor={""}
-        buttonPadding={"py-6"}
-        textSize={"text-base"}
-        textColor={"text-accentlight"}
-      />
+      <View className={`flex justify-center items-center py-3`}>
+          <TouchableOpacity
+              onPress={() => router.push("/signup")}
+              activeOpacity={0.6}
+              className= {"rounded-full justify-center items-center w-100 h-16"}>
+
+              <Text className={"font-inknut justify-center items-center pt-4 text-base text-accentlight"}>
+                Don't have an account? Sign Up
+              </Text>
+          </TouchableOpacity>
+      </View>
       
       </ScrollView>
     </SafeAreaView>
