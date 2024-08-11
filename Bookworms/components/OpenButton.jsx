@@ -6,8 +6,8 @@ const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding,
         <View className={`flex justify-center items-center ${buttonPadding}`}>
             <TouchableOpacity
                 onPress={handlePress}
-                activeOpacity={0.6}
-                className= {`rounded-full justify-center items-center 
+                activeOpacity={0.8}
+                className= {`justify-center items-center 
                     ${buttonColor}
                     ${buttonSize}`} 
                     style={styles.buttonShadow}>
@@ -24,9 +24,9 @@ const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding,
 
 const styles = StyleSheet.create({
     buttonShadow: {
-        shadowColor: '#1B0B01', // White shadow color
+        shadowColor: '#1B0B01', // black shadow color
         shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
+        shadowOpacity: 0.3,
         shadowRadius: 20,
         elevation: 5 // For Android elevation
     }
