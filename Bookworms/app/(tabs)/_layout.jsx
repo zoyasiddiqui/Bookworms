@@ -1,11 +1,18 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { Redirect, Stack } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+
 
 const HomeLayout = () => {
   return (
-    <View>
-      <Text>HomeLayout</Text>
-    </View>
+    <>
+      <Stack>
+        <Stack.Screen name="profile" options={{ headerShown: false }}/>
+        <Stack.Screen name="search" options={{ headerShown: false }}/>
+      </Stack>
+
+      <StatusBar backgroundColor="#B2906B" style="dark"/>
+    </>
   )
 }
 
