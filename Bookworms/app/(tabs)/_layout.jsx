@@ -8,7 +8,6 @@ const HomeLayout = () => {
     <>
       <Stack>
         <Stack.Screen name="profile" options={{ headerShown: false }}/>
-        <Stack.Screen name="search" options={{ headerShown: false }}/>
       </Stack>
 
       <StatusBar backgroundColor="#B2906B" style="dark"/>
