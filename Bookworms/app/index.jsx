@@ -57,7 +57,7 @@ const index = () => {
               />
             </View>
 
-            <Text className="font-inknut text-base text-center pt-8 px-10 text-accentlight">
+            <Text className="font-inknut text-sm text-center pt-8 text-accentlight">
               "A reader lives a thousand lives before he dies."
             </Text>
             <Text className="font-inknut text-accentlight text-sm text-center 
@@ -70,7 +70,7 @@ const index = () => {
           <View className="h-40 justify-end mb-10">
 
             <OpenButton title={ "Sign Up" }
-              handlePress={() => router.push("/signup")}
+              handlePress={() => router.push("/profile")}
               buttonSize={"px-20 py-3"}
               buttonColor={"bg-plight"}
               buttonPadding={"py-4"}
