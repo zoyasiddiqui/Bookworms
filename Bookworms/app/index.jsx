@@ -76,6 +76,7 @@ const index = () => {
               buttonPadding={"py-4"}
               textSize={"text-xl"}
               textColor={"text-accentdark"}
+              shadow={true}
             />
             <OpenButton title={ "Log In" }
               handlePress={() => router.push("/login")}
@@ -84,6 +85,7 @@ const index = () => {
               buttonPadding={"py-4"}
               textSize={"text-xl"}
               textColor={"text-accentdark"}
+              shadow={true}
             />
 
           </View>

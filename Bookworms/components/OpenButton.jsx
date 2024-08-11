@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding, textSize, textColor}) => {
+const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding, textSize, textColor, shadow}) => {
     return(
         <View className={`flex justify-center items-center ${buttonPadding}`}>
             <TouchableOpacity
@@ -9,8 +9,8 @@ const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding,
                 activeOpacity={0.8}
                 className= {`justify-center items-center 
                     ${buttonColor}
-                    ${buttonSize}`} 
-                    style={styles.buttonShadow}>
+                    ${buttonSize}`}
+                    style={shadow ? styles.buttonShadow : styles.noShadow}>
 
                 <Text className={`font-inknut justify-center items-center pt-4
                     ${textSize}
@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.3,
         shadowRadius: 20,
         elevation: 5 // For Android elevation
-    }
+    }, 
+    noShadow: {}
 })
 
 export default OpenButton;

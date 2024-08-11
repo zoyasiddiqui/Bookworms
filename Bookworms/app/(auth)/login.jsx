@@ -35,6 +35,8 @@ const Login = () => {
 
     if (error) Alert.alert(error.message) // should test if this detects empty fields
     setLoading(false)
+
+    router.push("../(tabs)/profile")
   }
 
   // == Components to Return ==
