@@ -29,7 +29,7 @@ const index = () => {
 
   // if user is logged in, redirect
   if (session && session.user) {
-    return <Redirect href={"/home"}/> // unless we want to redirect somewhere else
+    return <Redirect href={"/profile"}/> // unless we want to redirect somewhere else
   }
 
   return(
