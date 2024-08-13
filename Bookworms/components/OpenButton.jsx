@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 
-const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding, textSize, textColor, shadow}) => {
+const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding, buttonRound, textSize, textColor, shadow, additionalStyling}) => {
     return(
-        <View className={`flex justify-center items-center ${buttonPadding}`}>
+        <View className={`flex justify-center items-center ${buttonPadding} ${additionalStyling}`}>
             <TouchableOpacity
                 onPress={handlePress}
                 activeOpacity={0.8}
                 className= {`justify-center items-center 
+                    ${buttonRound ? "rounded-full" : ""}
                     ${buttonColor}
                     ${buttonSize}`}
                     style={shadow ? styles.buttonShadow : styles.noShadow}>

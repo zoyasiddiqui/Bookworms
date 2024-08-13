@@ -28,9 +28,9 @@ const index = () => {
   }, [])
 
   // if user is logged in, redirect
-  if (session && session.user) {
-    return <Redirect href={"/profile"}/> // unless we want to redirect somewhere else
-  }
+  // if (session && session.user) {
+  //   return <Redirect href={"/profile"}/> // unless we want to redirect somewhere else
+  // }
 
   return(
     <SafeAreaView className="bg-bglight h-full flex">
@@ -74,6 +74,7 @@ const index = () => {
               buttonSize={"px-20 py-3"}
               buttonColor={"bg-plight"}
               buttonPadding={"py-4"}
+              buttonRound={true}
               textSize={"text-xl"}
               textColor={"text-accentdark"}
               shadow={true}
@@ -83,6 +84,7 @@ const index = () => {
               buttonSize={"px-20 py-3"}
               buttonColor={"bg-plight"}
               buttonPadding={"py-4"}
+              buttonRound={true}
               textSize={"text-xl"}
               textColor={"text-accentdark"}
               shadow={true}

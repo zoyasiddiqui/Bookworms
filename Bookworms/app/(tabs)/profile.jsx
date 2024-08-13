@@ -19,59 +19,100 @@ const Profile = () => {
         {/* This will contain all of the elements */}
         <View className="px-4 items-center flex-1 justify-between">
           {/* This view will contain the title and the logo */}
-          <View className="flex-col justify-center items-center flex-1">
+          <View className="flex-col items-center justify-between flex-1">
 
-            <Header
-              title="Name"
+            <Header title="username"
               font="font-bodoni"
-              size="text-xl"
-              padding="pt-4 pb-2"
+              size="text-2xl"
+              padding="py-2"
               margin="mt-10"
             />
 
-            <View className="flex-row justify-center items-centers flex-1">
+            {/* This will hold the profile picture, the followers and following stuff, and the tag */}
+            <View className="flex-row justify-center items-center">
               
               <Avatar 
-                rounded={true}
-                size={64}
+                size={80}
                 title="MD"
                 showEditButton={true}
                 containerStyle={styles.avatarContainer}
               />
 
-              {/* This view will contain all the text/buttons */}
-              <View className="flex-col items-center justify-beg">
-                {/* This view will contain all the top text */}
-                <View className="flex-row justify-center items-center">
-
-                  <View className="flex-col justify-center items-center">
-                    <Text className="font-inknutbold text-sm pt-2">45</Text>
-                    <Text className="font-inknutthin text-sm px-2 pt-2">Followers</Text>
-                  </View>
-                  <View className="flex-col justify-center items-center">
-                    <Text className="font-inknutbold text-sm pt-2">47</Text>
-                    <Text className="font-inknutthin text-sm px-2 pt-2">Following</Text>
-                  </View>
-
-                  <OpenButton title={"Reader"}
-                    buttonSize={"w-20 h-10 mx-2"}
-                    buttonColor={"bg-plight rounded-full"}
-                    buttonPadding={"py-6"}
-                    textSize={"text-sm"}
-                    textColor={"text-accentdark"}
-                    shadow={true}
-                  />
+              <View className="flex-row justify-center items-center">
+                <View className="flex-col justify-center items-center">
+                  <Text className="font-inknutbold text-sm pt-2">45</Text>
+                  <Text className="font-inknutthin text-sm px-2 pt-2">Followers</Text>
+                </View>
+                <View className="flex-col justify-center items-center">
+                  <Text className="font-inknutbold text-sm pt-2">47</Text>
+                  <Text className="font-inknutthin text-sm px-2 pt-2">Following</Text>
                 </View>
 
-                <OpenButton title={ "Edit Profile" }
-                  buttonSize={"w-40 h-10"}
-                  buttonColor={"bg-slight"}
-                  buttonPadding={""}
+                <OpenButton title={"Reader"}
+                  buttonSize={"w-20 h-10 mx-2"}
+                  buttonColor={"bg-plight"}
+                  buttonPadding={"py-6"}
+                  buttonRound={true}
                   textSize={"text-sm"}
                   textColor={"text-accentdark"}
+                  shadow={true}
                 />
               </View>
+            
             </View>
+          
+            {/* This will hold the posts and the buttons to switch between Reviews, Shelves, and Quotes */}
+            <View className="h-[60%] justify-end">
+              
+              <View className="flex-row h-[10%] justify-center">
+                
+                <OpenButton title={"Reviews"}
+                  buttonSize={"w-full h-20 px-10"}
+                  buttonColor={"bg-plight"}
+                  buttonPadding={"py-6"}
+                  textSize={"text-sm"}
+                  textColor={"text-accentdark"}
+                  shadow={true}
+                  additionalStyling={"flex-2"}
+                />
+                
+                <OpenButton title={"Shelves"}
+                  buttonSize={"w-full h-20 px-10"}
+                  buttonColor={"bg-plight"}
+                  buttonPadding={"py-6"}
+                  textSize={"text-sm"}
+                  textColor={"text-accentdark"}
+                  shadow={true}
+                  additionalStyling={"flex-2"}
+                />
+
+                <OpenButton title={"Quotes"}
+                  buttonSize={"w-full h-20 px-10"}
+                  buttonColor={"bg-plight"}
+                  buttonPadding={"py-6"}
+                  textSize={"text-sm"}
+                  textColor={"text-accentdark"}
+                  shadow={true}
+                  additionalStyling={"flex-2"}
+                />
+
+              </View>
+
+              <View className="h-[90%] justify-center">
+                <OpenButton title={"Quotes"}
+                  buttonSize={"w-[100%] h-[100%] px-10"}
+                  buttonColor={"bg-plight"}
+                  buttonPadding={"py-6"}
+                  textSize={"text-sm"}
+                  textColor={"text-accentdark"}
+                  shadow={true}
+                />
+              </View>
+
+            </View>
+
+            {/* Down here, we'll have the taskbar */}
+
           </View>
         </View>
 
