@@ -5,6 +5,7 @@ import { NativeWindStyleSheet } from "nativewind";
 import { Avatar } from 'react-native-elements';
 import OpenButton from "../../../Bookworms/components/OpenButton";
 import Header from "../../../Bookworms/components/Header";
+import Review from "../../../Bookworms/components/Review";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -19,7 +20,7 @@ const Profile = () => {
         {/* This will contain all of the elements */}
         <View className="px-4 items-center flex-1 justify-between">
           {/* This view will contain the title and the logo */}
-          <View className="flex-col items-center justify-between flex-1">
+          <View className="h-[20%] flex-col items-center justify-start flex-1">
 
             <Header title="username"
               font="font-bodoni"
@@ -31,8 +32,7 @@ const Profile = () => {
             {/* This will hold the profile picture, the followers and following stuff, and the tag */}
             <View className="flex-row justify-center items-center">
               
-              <Avatar 
-                size={80}
+              <Avatar size={80}
                 title="MD"
                 showEditButton={true}
                 containerStyle={styles.avatarContainer}
@@ -58,60 +58,61 @@ const Profile = () => {
                   shadow={true}
                 />
               </View>
-            
             </View>
-          
-            {/* This will hold the posts and the buttons to switch between Reviews, Shelves, and Quotes */}
-            <View className="h-[60%] justify-end">
+          </View>
+
+          {/* This will hold the posts and the buttons to switch between Reviews, Shelves, and Quotes */}
+          <View className="h-[60%] justify-end">           
+            <View className="flex-row h-[10%] justify-center">
               
-              <View className="flex-row h-[10%] justify-center">
-                
-                <OpenButton title={"Reviews"}
-                  buttonSize={"w-full h-20 px-10"}
-                  buttonColor={"bg-plight"}
-                  buttonPadding={"py-6"}
-                  textSize={"text-sm"}
-                  textColor={"text-accentdark"}
-                  shadow={true}
-                  additionalStyling={"flex-2"}
-                />
-                
-                <OpenButton title={"Shelves"}
-                  buttonSize={"w-full h-20 px-10"}
-                  buttonColor={"bg-plight"}
-                  buttonPadding={"py-6"}
-                  textSize={"text-sm"}
-                  textColor={"text-accentdark"}
-                  shadow={true}
-                  additionalStyling={"flex-2"}
-                />
+              <OpenButton title={"Reviews"}
+                buttonSize={"w-full h-[100%] px-10"}
+                buttonColor={"bg-plight"}
+                buttonPadding={""}
+                textSize={"text-sm"}
+                textColor={"text-accentdark"}
+                shadow={true}
+                additionalStyling={"flex-2"}
+              />
+              
+              <OpenButton title={"Shelves"}
+                buttonSize={"w-full h-[100%] px-10"}
+                buttonColor={"bg-plight"}
+                buttonPadding={""}
+                textSize={"text-sm"}
+                textColor={"text-accentdark"}
+                shadow={true}
+                additionalStyling={"flex-2"}
+              />
 
-                <OpenButton title={"Quotes"}
-                  buttonSize={"w-full h-20 px-10"}
-                  buttonColor={"bg-plight"}
-                  buttonPadding={"py-6"}
-                  textSize={"text-sm"}
-                  textColor={"text-accentdark"}
-                  shadow={true}
-                  additionalStyling={"flex-2"}
-                />
-
-              </View>
-
-              <View className="h-[90%] justify-center">
-                <OpenButton title={"Quotes"}
-                  buttonSize={"w-[100%] h-[100%] px-10"}
-                  buttonColor={"bg-plight"}
-                  buttonPadding={"py-6"}
-                  textSize={"text-sm"}
-                  textColor={"text-accentdark"}
-                  shadow={true}
-                />
-              </View>
+              <OpenButton title={"Quotes"}
+                buttonSize={"w-full h-[100%] px-10"}
+                buttonColor={"bg-plight"}
+                buttonPadding={""}
+                textSize={"text-sm"}
+                textColor={"text-accentdark"}
+                shadow={true}
+                additionalStyling={"flex-2"}
+              />
 
             </View>
 
-            {/* Down here, we'll have the taskbar */}
+            <View className="h-[90%] justify-center bg-accentdark">
+              <ScrollView contentContainerStyle={{ flexGrow: 1, }}>
+                <Review/>
+                <Review/>
+                <Review/>
+                <Review/>
+                <Review/>
+                <Review/>
+                <Review/>
+                <Review/>
+                <Review/>
+                <Review/>
+                <Review/>
+                <Review/>
+              </ScrollView>
+            </View>
 
           </View>
         </View>
