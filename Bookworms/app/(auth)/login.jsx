@@ -33,7 +33,11 @@ const Login = () => {
       password: form.password,
     })
 
-    if (error) Alert.alert(error.message) // should test if this detects empty fields
+    if (error) {
+      Alert.alert(error.message)
+      setLoading(false)
+      return;
+    }
     setLoading(false)
 
     router.push("../(tabs)/profile")

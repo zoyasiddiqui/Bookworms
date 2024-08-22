@@ -134,7 +134,7 @@ const SignUp = () => {
 
       <View className={`flex justify-center items-center py-3`}>
           <TouchableOpacity
-              onPress={() => router.push("/signup")}
+              onPress={() => router.push("/login")}
               activeOpacity={0.6}
               className= {"rounded-full justify-center items-center w-100 h-16"}>
 
