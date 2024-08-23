@@ -14,9 +14,6 @@ NativeWindStyleSheet.setOutput({
   default: "native",
 });
 
-// TODO: get submit button functioning
-// TODO: ensure password meets some criteria
-
 const SignUp = () => {
   const [form, setForm] = useState({
     firstName: '',
