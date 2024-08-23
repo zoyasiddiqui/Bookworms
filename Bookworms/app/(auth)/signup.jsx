@@ -73,7 +73,7 @@ const SignUp = () => {
   return (
     <SafeAreaView className="bg-bglight h-full flex">
       <StatusBar/>
-      <ScrollView contentContainerStyle={{ height: "100%", flexGrow: 1, }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, }}>
 
         <Header
           title="Sign Up"
