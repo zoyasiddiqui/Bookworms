@@ -51,8 +51,8 @@ const Profile = () => {
 
     // updating state with info about current user
     setCurUser({
-      firstName: profile.first_name || '',
-      lastName: profile.last_name || '',
+      firstName: profile.first_name || 'First',
+      lastName: profile.last_name || 'Last',
       tag: 'Reader', // You might want to get this from the database as well if it's dynamic
       avatar: profile.avatar_url || null, // Assuming your profile has an avatar_url field
     });
@@ -90,7 +90,7 @@ const Profile = () => {
             <View className="flex-row justify-center items-center">
 
               <Avatar size={80}
-                title="MD"
+                title={`${curUser.firstName[0]} ${curUser.lastName[0]}`}
                 showEditButton={true}
                 containerStyle={styles.avatarContainer}
               />
