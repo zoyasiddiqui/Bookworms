@@ -70,7 +70,7 @@ const index = () => {
           <View className="h-40 justify-end mb-10">
 
             <OpenButton title={ "Sign Up" }
-              handlePress={() => router.push("/profile")}
+              handlePress={() => router.push("/signup")}
               buttonSize={"px-20 py-3"}
               buttonColor={"bg-plight"}
               buttonPadding={"py-4"}
