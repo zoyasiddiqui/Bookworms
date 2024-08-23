@@ -55,8 +55,8 @@ const SignUp = () => {
       password: form.password,
       options: {
         data: {
-          firstName: form.firstName,
-          lastName: form.lastName,
+          first_name: form.firstName, // variables need to be the same as it is in supabase
+          last_name: form.lastName,
         }
       }
     })
