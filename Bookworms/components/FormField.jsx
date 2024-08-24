@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
-
+import { useGlobalContext } from "../context/GlobalProvider";
 import icons from "../../Bookworms/constants/icons.js";
 
 const FormField = ({
@@ -12,6 +12,7 @@ const FormField = ({
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const {loading, setLoading} = useGlobalContext();
 
   return (
     <View className={`${otherStyles}`}>
@@ -29,7 +30,7 @@ const FormField = ({
         />
 
         {(title === "Password") && (
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)} disabled={loading}>
             <Image
               source={!showPassword ? icons.eye : icons.eyeHide}
               className="w-6 h-6"

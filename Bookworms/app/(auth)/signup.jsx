@@ -134,7 +134,9 @@ const SignUp = () => {
           <TouchableOpacity
               onPress={() => router.push("/login")}
               activeOpacity={0.6}
-              className= {"rounded-full justify-center items-center w-100 h-16"}>
+              className= {"rounded-full justify-center items-center w-100 h-16"}
+              disabled={loading}    
+          >
 
               <Text className={"font-inknut justify-center items-center pt-4 text-base text-accentlight"}>
                 Already have an account? Log In

@@ -153,7 +153,7 @@ const Profile = () => {
                 title={`${curUser.firstName[0]} ${curUser.lastName[0]}`}
                 showEditButton={true}
                 containerStyle={styles.avatarContainer}
-                source={`${curUser.avatar_url ? curUser.avatar_url : require('../../assets/images/profile.png')}`}
+                source={`${curUser.avatar_url}`}
                 onPress={() => uploadAvatar()}
             />
 

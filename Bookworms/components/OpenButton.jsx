@@ -1,7 +1,10 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { useGlobalContext } from "../context/GlobalProvider";
 
 const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding, buttonRound, textSize, textColor, shadow, additionalStyling}) => {
+    const {loading, setLoading} = useGlobalContext();
+
     return(
         <View className={`flex justify-center items-center ${buttonPadding} ${additionalStyling}`}>
             <TouchableOpacity
@@ -11,7 +14,9 @@ const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding,
                     ${buttonRound ? "rounded-full" : ""}
                     ${buttonColor}
                     ${buttonSize}`}
-                    style={shadow ? styles.buttonShadow : styles.noShadow}>
+                    style={shadow ? styles.buttonShadow : styles.noShadow}
+                    disabled={loading}
+            >
 
                 <Text className={`font-inknut justify-center items-center pt-4
                     ${textSize}
