@@ -27,3 +27,39 @@ AppState.addEventListener('change', (state) => {
     supabase.auth.stopAutoRefresh() // to save resources
   }
 })
+
+// get any user's profile table information
+// could add an options parameter later if we want to only get specific information, not all of it
+export async function getProfile(userId) {
+  const { data: profile, error: profileRetrievalError, } = await supabase
+  .from("profiles")
+  .select('first_name, last_name, avatar_url')
+  .eq('id', userId)
+  .single(); // Expecting a single row since id is unique
+
+  if (profileRetrievalError) {
+    Alert.alert(profileRetrievalError.message)
+    return;
+  }
+
+  return profile
+}
+
+/**
+ *  Update a user's profile table.
+ * 
+ * @updates - a javascript object of updates. i.e. {id: 1, first_name: "bob"}
+ */
+export async function updateProfile(updates) {
+  try {
+    const { error } = await supabase.from('profiles').upsert(updates)
+
+    if (error) {
+      throw error
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      Alert.alert(error.message)
+    }
+  }
+}

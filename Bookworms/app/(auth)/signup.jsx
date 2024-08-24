@@ -8,7 +8,8 @@ import { NativeWindStyleSheet } from "nativewind";
 import FormField from "../../../Bookworms/components/FormField"
 import OpenButton from "../../../Bookworms/components/OpenButton";
 import Header from "../../../Bookworms/components/Header";
-import { Redirect, router } from "expo-router";
+import { router } from "expo-router";
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -22,7 +23,7 @@ const SignUp = () => {
     password: '',
     confirmPassword: '',
   })
-  const [loading, setLoading] = useState(false)
+  const {loading, setLoading} = useGlobalContext();
 
   // when user presses the sign in button
   async function signUp() {

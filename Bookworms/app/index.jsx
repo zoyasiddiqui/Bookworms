@@ -5,29 +5,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { NativeWindStyleSheet } from "nativewind";
 import OpenButton from "../../Bookworms/components/OpenButton";
 import Header from "../../Bookworms/components/Header";
-import { useState, useEffect } from "react";
-import { supabase } from '../lib/supabase';
+import { useGlobalContext } from "../context/GlobalProvider";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
 });
 
 const index = () => {
-  const [session, setSession] = useState(null) 
-
-  useEffect(() => {
-    // fetch current authentication session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-
-    // listens for changes in the authentication state (i.e. logging in)
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
-
   // if user is logged in, redirect
+  const {session} = useGlobalContext();
+  
   // if (session && session.user) {
   //   return <Redirect href={"/profile"}/> // unless we want to redirect somewhere else
   // }

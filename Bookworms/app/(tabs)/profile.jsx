@@ -4,8 +4,9 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, Alert } fr
 import { Avatar } from 'react-native-elements';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NativeWindStyleSheet } from "nativewind";
-import { useState } from 'react'
-import { supabase } from '../../lib/supabase'
+import { useState, useEffect } from 'react'
+import { supabase, getProfile, updateProfile } from '../../lib/supabase'
+import { useGlobalContext } from "../../context/GlobalProvider";
 import OpenButton from "../../../Bookworms/components/OpenButton";
 import Header from "../../../Bookworms/components/Header";
 import Review from "../../../Bookworms/components/Review";
@@ -16,8 +17,11 @@ NativeWindStyleSheet.setOutput({
 });
 
 const Profile = () => {
-  // during profile pic uploads
-  const [uploading, setUploading] = useState(false)
+  const {session, uploading, setUploading} = useGlobalContext();
+
+  useEffect(() => {
+    if (session) getInfo()
+  }, [session])
 
   // setting up user info
   const [curUser, setCurUser] = useState({
@@ -27,30 +31,11 @@ const Profile = () => {
     avatar: null,
   })
 
-  //function to retrieve user info
+  // function to retrieve user info
   async function getInfo() {
-    
-    const { data : {user}, error: userRetrievalError, } = await supabase.auth.getUser()
+    if (!session?.user) throw new Error('No user on the session!')
 
-    if (userRetrievalError){
-      Alert.alert(userRetrievalError.message)
-      return;
-    } 
-
-    const userId = user?.id;
-
-    const { data: profile, error: profileRetrievalError, } = await supabase
-      .from("profiles")
-      .select('first_name, last_name, avatar_url')
-      .eq('id', userId)
-      .single(); // Expecting a single row since id is unique
-
-    if (profileRetrievalError) {
-      Alert.alert(profileRetrievalError.message)
-      return;
-    }
-
-    console.log(profile);
+    const profile = await getProfile(session.user.id)
 
     // updating state with info about current user
     setCurUser({
@@ -78,7 +63,8 @@ const Profile = () => {
 
       if (result.canceled || !result.assets || result.assets.length === 0) {
         console.log('User cancelled image picker.')
-        return // set uploading false b4?
+        setUploading(false)
+        return
       }
 
       const image = result.assets[0]
@@ -104,7 +90,25 @@ const Profile = () => {
         throw uploadError
       }
 
-      updateProfile(data.path)
+      // update profile table
+      const updates = {
+        id: session.user.id,
+        first_name: session.user.first_name,
+        last_name: session.user.last_name,
+        avatar_url: data.path
+      }
+
+      updateProfile(updates)
+
+      // updating state with new profile picture
+      // not sure if the useEffect would handle this
+      setCurUser({
+        firstName: session.user.first_name || 'First',
+        lastName: session.user.last_name || 'Last',
+        tag: 'Reader', // You might want to get this from the database as well if it's dynamic
+        avatar: avatar_url, // Assuming your profile has an avatar_url field
+      });
+
     } catch (error) {
       if (error instanceof Error) {
         Alert.alert(error.message)
@@ -114,46 +118,7 @@ const Profile = () => {
     } finally {
       setUploading(false)
     }
-  }
-
-  // update profile table (maybe we might want this in profile.jsx instead)
-  async function updateProfile(avatar_url = curUser.avatar, first_name = curUser.firstName, last_name = curUser.lastName) {
-    console.log(avatar_url)
-    try {
-      const { data : {user}, error: userRetrievalError, } = await supabase.auth.getUser()
-
-      if (userRetrievalError){
-        Alert.alert(userRetrievalError.message)
-        return;
-      } 
-
-      const updates = {
-        id: user.id,
-        first_name: user.first_name,
-        last_name: user.last_name,
-        avatar_url: avatar_url
-      }
-
-      const { error } = await supabase.from('profiles').upsert(updates)
-
-      // updating state with new profile picture
-      setCurUser({
-        firstName: user.first_name || 'First',
-        lastName: user.last_name || 'Last',
-        tag: 'Reader', // You might want to get this from the database as well if it's dynamic
-        avatar: avatar_url, // Assuming your profile has an avatar_url field
-      });
-      console.log(curUser)
-
-      if (error) {
-        throw error
-      }
-    } catch (error) {
-      if (error instanceof Error) {
-        Alert.alert(error.message)
-      }
-    }
-  }
+  }  
 
   return (
     <SafeAreaView className="bg-bglight h-full flex">
