@@ -6,6 +6,7 @@ import { NativeWindStyleSheet } from "nativewind";
 import OpenButton from "../../Bookworms/components/OpenButton";
 import Header from "../../Bookworms/components/Header";
 import { useGlobalContext } from "../context/GlobalProvider";
+import { uploadBooksToSupabase } from "../lib/supabase";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -18,6 +19,8 @@ const index = () => {
   if (session && session.user) {
     return <Redirect href={"/profile"}/> // unless we want to redirect somewhere else
   }
+
+  uploadBooksToSupabase('harry+potter', 40);
 
   return(
     <SafeAreaView className="bg-bglight h-full flex">
