@@ -15,9 +15,9 @@ const index = () => {
   // if user is logged in, redirect
   const {session} = useGlobalContext();
   
-  // if (session && session.user) {
-  //   return <Redirect href={"/profile"}/> // unless we want to redirect somewhere else
-  // }
+  if (session && session.user) {
+    return <Redirect href={"/profile"}/> // unless we want to redirect somewhere else
+  }
 
   return(
     <SafeAreaView className="bg-bglight h-full flex">
