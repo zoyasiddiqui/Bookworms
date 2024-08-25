@@ -91,6 +91,9 @@ const Profile = () => {
         throw uploadError
       }
 
+      // Store the path of the old profile picture
+      const oldAvatarPath = curUser.avatar;
+
       // update profile table
       const updates = {
         id: session.user.id,
@@ -104,6 +107,17 @@ const Profile = () => {
       } catch (error) {
         console.log("Update profile error", error.message)
         Alert.alert(error.message)
+      }
+
+      // delete the old profile picture from Supabase storage
+      if (oldAvatarPath) {
+        const { error: deleteError } = await supabase.storage
+          .from('avatars')
+          .remove([oldAvatarPath]);
+
+        if (deleteError) {
+          console.log('Error deleting old profile picture:', deleteError.message);
+        }
       }
 
       // updating state with new profile picture
