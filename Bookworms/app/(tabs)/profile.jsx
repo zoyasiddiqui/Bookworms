@@ -9,7 +9,7 @@ import { supabase, getProfile, updateProfile } from '../../lib/supabase'
 import { useGlobalContext } from "../../context/GlobalProvider";
 import OpenButton from "../../../Bookworms/components/OpenButton";
 import Header from "../../../Bookworms/components/Header";
-import Review from "../../../Bookworms/components/Review";
+import ReviewsView from "../../../Bookworms/components/profile/ReviewsView.jsx";
 import icons from "../../../Bookworms/constants/icons.js";
 
 NativeWindStyleSheet.setOutput({
@@ -22,6 +22,8 @@ const Profile = () => {
   useEffect(() => {
     if (session) getInfo()
   }, [session])
+
+  const [selectedTab, setSelectedTab] = useState('Reviews'); // Default to 'Reviews'
 
   // setting up user info
   const [curUser, setCurUser] = useState({
@@ -45,6 +47,7 @@ const Profile = () => {
       tag: 'Reader', // You might want to get this from the database as well if it's dynamic
       avatar: profile.avatar_url || null, // Assuming your profile has an avatar_url field
     });
+
   }
 
   // upload the image to supabase
@@ -69,7 +72,6 @@ const Profile = () => {
       }
 
       const image = result.assets[0]
-      console.log("Got image",image)
 
       if (!image.uri) {
         throw new Error('No image uri!') // this should never happen, just in case
@@ -78,8 +80,6 @@ const Profile = () => {
       const arraybuffer = await fetch(image.uri).then((res) => res.arrayBuffer())
       const fileExt = image.uri?.split('.').pop()?.toLowerCase() ?? 'jpg' // get file extension
       const path = `${Date.now()}.${fileExt}` // so file paths are unique
-
-      console.log("Path", path)
 
       // send to Supabase storage
       const { data, error: uploadError } = await supabase.storage
@@ -205,6 +205,7 @@ const Profile = () => {
             <View className="flex-row h-[10%] justify-center">
               
               <OpenButton title={"Reviews"}
+                onPress={() => setSelectedTab("Reviews")}
                 buttonSize={"w-full h-[100%] px-10"}
                 buttonColor={"bg-plight"}
                 buttonPadding={""}
@@ -215,6 +216,7 @@ const Profile = () => {
               />
               
               <OpenButton title={"Shelves"}
+                onPress={() => setSelectedTab("Shelves")}
                 buttonSize={"w-full h-[100%] px-10"}
                 buttonColor={"bg-plight"}
                 buttonPadding={""}
@@ -225,6 +227,7 @@ const Profile = () => {
               />
 
               <OpenButton title={"Quotes"}
+                onPress={() => setSelectedTab("Quotes")}
                 buttonSize={"w-full h-[100%] px-10"}
                 buttonColor={"bg-plight"}
                 buttonPadding={""}
@@ -237,20 +240,7 @@ const Profile = () => {
             </View>
 
             <View className="h-[90%] justify-center bg-accentdark">
-              <ScrollView contentContainerStyle={{ flexGrow: 1, }}>
-                <Review/>
-                <Review/>
-                <Review/>
-                <Review/>
-                <Review/>
-                <Review/>
-                <Review/>
-                <Review/>
-                <Review/>
-                <Review/>
-                <Review/>
-                <Review/>
-              </ScrollView>
+              <ReviewsView/>
             </View>
 
           </View>

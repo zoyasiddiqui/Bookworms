@@ -2,6 +2,7 @@ import 'react-native-url-polyfill/auto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
 import { AppState } from 'react-native'
+import fetchBooksFromGoogle from './getBooks';
 
 // safe to be exposed because of Supabase's security
 const supabaseUrl = "https://rcufxvsfblvrxhcvptvd.supabase.co";
@@ -62,4 +63,31 @@ export async function updateProfile(updates) {
       Alert.alert(error.message)
     }
   }
+}
+
+export async function uploadBooksToSupabase(query, maxResults = 40) {
+  const books = fetchBooksFromGoogle(query, maxResults);
+
+  const formattedBooks = books.map(book => ({
+    title: book.volumeInfo.title,
+    authors: book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : null,
+    publisher: book.volumeInfo.publisher,
+    publishedDate: book.volumeInfo.publishedDate,
+    description: book.volumeInfo.description,
+    thumbnail: book.volumeInfo.imageLinks?.thumbnail,
+    googleBooksId: book.id,
+  }));
+
+  try {
+    const { data, error } = await supabase.from('books').insert(formattedBooks);
+
+    if (error) {
+      console.error('Error uploading books to Supabase:', error);
+    } else {
+      console.log('Books uploaded successfully:', data);
+    }
+  } catch (error) {
+    console.error('Error uploading books to Supabase:', error);
+  }
+
 }
