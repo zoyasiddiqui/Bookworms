@@ -36,6 +36,7 @@ const Profile = () => {
     if (!session?.user) throw new Error('No user on the session!')
 
     const profile = await getProfile(session.user.id)
+    console.log("Current Profile", profile)
 
     // updating state with info about current user
     setCurUser({
@@ -68,16 +69,17 @@ const Profile = () => {
       }
 
       const image = result.assets[0]
-      console.log('Got image', image)
+      console.log("Got image",image)
 
       if (!image.uri) {
         throw new Error('No image uri!') // this should never happen, just in case
       }
 
       const arraybuffer = await fetch(image.uri).then((res) => res.arrayBuffer())
-
-      const fileExt = image.uri?.split('.').pop()?.toLowerCase() ?? 'jpeg' // get file extension
+      const fileExt = image.uri?.split('.').pop()?.toLowerCase() ?? 'jpg' // get file extension
       const path = `${Date.now()}.${fileExt}` // so file paths are unique
+
+      console.log("Path", path)
 
       // send to Supabase storage
       const { data, error: uploadError } = await supabase.storage
@@ -87,6 +89,7 @@ const Profile = () => {
         })
 
       if (uploadError) {
+        console.log("upload error", uploadError.message)
         throw uploadError
       }
 
@@ -97,20 +100,33 @@ const Profile = () => {
         last_name: session.user.last_name,
         avatar_url: data.path
       }
-
-      updateProfile(updates)
+      
+      try {
+        updateProfile(updates)
+      } catch (error) {
+        console.log("Update profile error", error.message)
+        Alert.alert(error.message)
+      }
 
       // updating state with new profile picture
-      // not sure if the useEffect would handle this
-      setCurUser({
-        firstName: session.user.first_name || 'First',
-        lastName: session.user.last_name || 'Last',
-        tag: 'Reader', // You might want to get this from the database as well if it's dynamic
-        avatar: avatar_url, // Assuming your profile has an avatar_url field
-      });
+      try {
+        setCurUser({
+          firstName: session.user.first_name || 'First',
+          lastName: session.user.last_name || 'Last',
+          tag: 'Reader', // You might want to get this from the database as well if it's dynamic
+          avatar: data.path, 
+        });
+      } catch (error) {
+        console.log("Set Cur User error", error.message)
+        Alert.alert(error.message)
+      }
+
+      const { publicURL } = supabase.storage.from('avatars').getPublicUrl(data.path);
+      console.log("Public Url", publicURL)
 
     } catch (error) {
       if (error instanceof Error) {
+        console.log("Catch portion error", error.message)
         Alert.alert(error.message)
       } else {
         throw error
@@ -150,10 +166,10 @@ const Profile = () => {
             <View className="flex-row justify-center items-center">
 
             <Avatar size={80}
-                title={`${curUser.firstName[0]} ${curUser.lastName[0]}`}
+                // title={`${curUser.firstName[0]} ${curUser.lastName[0]}`}
                 showEditButton={true}
                 containerStyle={styles.avatarContainer}
-                source={`${curUser.avatar_url}`}
+                source={curUser.avatar ? { uri: curUser.avatar } : null}
                 onPress={() => uploadAvatar()}
             />
 

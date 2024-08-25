@@ -59,6 +59,8 @@ const SignUp = () => {
       }
     })
 
+
+    // do we need return statements in this if/else?
     if (error){
       Alert.alert(error.message)
       setLoading(false)
