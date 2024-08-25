@@ -3,7 +3,7 @@ import React from 'react'
 import { useGlobalContext } from "../context/GlobalProvider";
 
 const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding, buttonRound, textSize, textColor, shadow, additionalStyling}) => {
-    const {loading, setLoading} = useGlobalContext();
+    const {loading, setLoading, uploading, setUploading} = useGlobalContext();
 
     return(
         <View className={`flex justify-center items-center ${buttonPadding} ${additionalStyling}`}>
@@ -15,7 +15,7 @@ const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding,
                     ${buttonColor}
                     ${buttonSize}`}
                     style={shadow ? styles.buttonShadow : styles.noShadow}
-                    disabled={loading}
+                    disabled={loading || uploading}
             >
 
                 <Text className={`font-inknut justify-center items-center pt-4

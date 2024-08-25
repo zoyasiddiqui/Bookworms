@@ -18,11 +18,6 @@ NativeWindStyleSheet.setOutput({
 
 const Profile = () => {
   const {session, uploading, setUploading} = useGlobalContext();
-
-  useEffect(() => {
-    if (session) getInfo()
-  }, [session])
-
   const [selectedTab, setSelectedTab] = useState('Reviews'); // Default to 'Reviews'
 
   // setting up user info
@@ -32,6 +27,10 @@ const Profile = () => {
     tag: 'Reader',
     avatar: null,
   })
+
+  useEffect(() => {
+    if (session) getInfo()
+  }, [session])
 
   // function to retrieve user info
   async function getInfo() {
@@ -47,7 +46,6 @@ const Profile = () => {
       tag: 'Reader', // You might want to get this from the database as well if it's dynamic
       avatar: profile.avatar_url || null, // Assuming your profile has an avatar_url field
     });
-
   }
 
   // upload the image to supabase
@@ -100,7 +98,7 @@ const Profile = () => {
         last_name: session.user.last_name,
         avatar_url: data.path
       }
-      
+
       try {
         updateProfile(updates)
       } catch (error) {
@@ -110,20 +108,11 @@ const Profile = () => {
 
       // updating state with new profile picture
       try {
-        setCurUser({
-          firstName: session.user.first_name || 'First',
-          lastName: session.user.last_name || 'Last',
-          tag: 'Reader', // You might want to get this from the database as well if it's dynamic
-          avatar: data.path, 
-        });
+        getInfo()
       } catch (error) {
         console.log("Set Cur User error", error.message)
         Alert.alert(error.message)
       }
-
-      const { publicURL } = supabase.storage.from('avatars').getPublicUrl(data.path);
-      console.log("Public Url", publicURL)
-
     } catch (error) {
       if (error instanceof Error) {
         console.log("Catch portion error", error.message)
@@ -134,7 +123,18 @@ const Profile = () => {
     } finally {
       setUploading(false)
     }
-  }  
+  } 
+
+  function getProfilePic(path) {
+      const { data, error } = supabase.storage.from('avatars').getPublicUrl(path)
+
+      if (error) {
+        console.log('Error getting profile pic: ', error.message)
+        Alert.alert(error.message)
+      }
+
+      return data.publicUrl
+  }
 
   return (
     <SafeAreaView className="bg-bglight h-full flex">
@@ -166,10 +166,10 @@ const Profile = () => {
             <View className="flex-row justify-center items-center">
 
             <Avatar size={80}
-                // title={`${curUser.firstName[0]} ${curUser.lastName[0]}`}
+                title={`${curUser.firstName[0]} ${curUser.lastName[0]}`} // for when user doesn't have a pfp
                 showEditButton={true}
                 containerStyle={styles.avatarContainer}
-                source={curUser.avatar ? { uri: curUser.avatar } : null}
+                source={{uri: getProfilePic(curUser.avatar)}}
                 onPress={() => uploadAvatar()}
             />
 

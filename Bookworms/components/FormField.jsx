@@ -12,7 +12,7 @@ const FormField = ({
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
-  const {loading, setLoading} = useGlobalContext();
+  const {loading, setLoading, uploading, setUploading} = useGlobalContext();
 
   return (
     <View className={`${otherStyles}`}>
@@ -26,12 +26,12 @@ const FormField = ({
           placeholderTextColor="#7B7B8B"
           onChangeText={handleChangeText}
           secureTextEntry={(title === "Password" || title === "Confirm Password") && !showPassword}
-          editable={!loading}
+          editable={!(loading || uploading)}
           {...props}
         />
 
         {(title === "Password") && (
-          <TouchableOpacity onPress={() => setShowPassword(!showPassword)} disabled={loading}>
+          <TouchableOpacity onPress={() => setShowPassword(!showPassword)} disabled={loading || uploading}>
             <Image
               source={!showPassword ? icons.eye : icons.eyeHide}
               className="w-6 h-6"
