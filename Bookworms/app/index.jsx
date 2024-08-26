@@ -15,12 +15,16 @@ NativeWindStyleSheet.setOutput({
 const index = () => {
   // if user is logged in, redirect
   const {session} = useGlobalContext();
-  
-  // if (session && session.user) {
-  //   return <Redirect href={"/profile"}/> // unless we want to redirect somewhere else
-  // }
 
-  uploadBooksToSupabase('harry+potter', 40);
+  const profileRedir = () => {
+    router.push("/profile")
+  }
+  const signupRedir = () => {
+    router.push("/signup")
+  }
+  const loginRedir = () => {
+    router.push("/login")
+  }
 
   return(
     <SafeAreaView className="bg-bglight h-full flex">
@@ -60,7 +64,7 @@ const index = () => {
           <View className="h-40 justify-end mb-10">
 
             <OpenButton title={ "Sign Up" }
-              handlePress={() => router.push("/signup")}
+              handlePress={session == null ? signupRedir : profileRedir}
               buttonSize={"px-20 py-3"}
               buttonColor={"bg-plight"}
               buttonPadding={"py-4"}
@@ -70,7 +74,7 @@ const index = () => {
               shadow={true}
             />
             <OpenButton title={ "Log In" }
-              handlePress={() => router.push("/login")}
+              handlePress={session == null ? loginRedir : profileRedir}
               buttonSize={"px-20 py-3"}
               buttonColor={"bg-plight"}
               buttonPadding={"py-4"}
