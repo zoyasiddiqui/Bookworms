@@ -5,7 +5,7 @@ import { Avatar } from 'react-native-elements';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NativeWindStyleSheet } from "nativewind";
 import { useState, useEffect } from 'react'
-import { supabase, getProfile, updateProfile } from '../../lib/supabase'
+import { supabase, getProfile, updateProfile, uploadBooksToSupabase } from '../../lib/supabase'
 import { useGlobalContext } from "../../context/GlobalProvider";
 import OpenButton from "../../../Bookworms/components/OpenButton";
 import Header from "../../../Bookworms/components/Header";
@@ -36,15 +36,17 @@ const Profile = () => {
   async function getInfo() {
     if (!session?.user) throw new Error('No user on the session!')
 
+    // COMMENT THIS OUT LATER
+    uploadBooksToSupabase("harry+potter", 10)
+
     const profile = await getProfile(session.user.id)
     console.log("Current Profile", profile)
 
-    // updating state with info about current user
     setCurUser({
       firstName: profile.first_name || 'First',
       lastName: profile.last_name || 'Last',
       tag: 'Reader', // You might want to get this from the database as well if it's dynamic
-      avatar: profile.avatar_url || null, // Assuming your profile has an avatar_url field
+      avatar: profile.avatar_url || null,
     });
   }
 

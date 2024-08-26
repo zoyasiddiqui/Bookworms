@@ -65,7 +65,7 @@ export async function updateProfile(updates) {
   }
 }
 
-export async function uploadBooksToSupabase(query, maxResults = 40) {
+export async function uploadBooksToSupabase(query, maxResults = 40, sessionID) {
   let books = [];
   let startIndex = 0;
   const maxBooks = 10; // Set a limit to avoid too many requests
@@ -102,7 +102,9 @@ export async function uploadBooksToSupabase(query, maxResults = 40) {
   }));
 
   try {
-    const { data, error } = await supabase.from('books').insert(formattedBooks);
+    const { data, error } = await supabase
+      .from('books')
+      .insert(formattedBooks)
 
     if (error) {
       console.error('Error uploading books to Supabase:', error);
