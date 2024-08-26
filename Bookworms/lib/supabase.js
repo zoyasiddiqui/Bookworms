@@ -68,7 +68,7 @@ export async function updateProfile(updates) {
 export async function uploadBooksToSupabase(query, maxResults = 40) {
   let books = [];
   let startIndex = 0;
-  const maxBooks = 1000; // Set a limit to avoid too many requests
+  const maxBooks = 10; // Set a limit to avoid too many requests
 
   try {
     while (startIndex < maxBooks) {
@@ -94,27 +94,23 @@ export async function uploadBooksToSupabase(query, maxResults = 40) {
   }
 
   const formattedBooks = books.map(book => ({
-    title: book.volumeInfo.title,
+    name: book.volumeInfo.title,
     authors: book.volumeInfo.authors ? book.volumeInfo.authors.join(', ') : null,
-    publisher: book.volumeInfo.publisher,
-    publishedDate: book.volumeInfo.publishedDate,
-    description: book.volumeInfo.description,
-    thumbnail: book.volumeInfo.imageLinks?.thumbnail,
-    googleBooksId: book.id,
+    synopsis: book.volumeInfo.description,
+    thumbnail_url: book.volumeInfo.imageLinks?.thumbnail,
+    google_books_id: book.id,
   }));
 
-  console.log(formattedBooks[0])
+  try {
+    const { data, error } = await supabase.from('books').insert(formattedBooks);
 
-  // try {
-  //   const { data, error } = await supabase.from('books').insert(formattedBooks);
-
-  //   if (error) {
-  //     console.error('Error uploading books to Supabase:', error);
-  //   } else {
-  //     console.log('Books uploaded successfully:', data);
-  //   }
-  // } catch (error) {
-  //   console.error('Error uploading books to Supabase:', error);
-  // }
+    if (error) {
+      console.error('Error uploading books to Supabase:', error);
+    } else {
+      console.log('Books uploaded successfully');
+    }
+  } catch (error) {
+    console.error('Error uploading books to Supabase:', error);
+  }
 
 }
