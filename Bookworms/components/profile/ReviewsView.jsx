@@ -12,10 +12,29 @@ NativeWindStyleSheet.setOutput({
   default: "native",
 });
 
-const ReviewsView = () => {
+const ReviewsView = ({userID}) => {
+
+  async function getReviews(userID) {
+
+    const { data: reviews, reviewError } = await supabase
+      .from('reviews')
+      .select('name, review, rating, book_id')
+      .eq('user_id', userID);
+
+    if (reviewError) {
+      Alert.alert(reviewError)
+      return;
+    }
+
+    return reviews
+  }
+
+  getReviews(userID).then((reviews) => console.log(reviews))
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1}}>
-        <TouchableOpacity className="justify-center items-center top-5">
+        <TouchableOpacity 
+        className="justify-center items-center top-5">
             <Image
                 source={icons.plus}
                 className="w-8 h-8"
@@ -23,21 +42,6 @@ const ReviewsView = () => {
             />
         </TouchableOpacity>
 
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
-        <Review/>
     </ScrollView>
   )
 };

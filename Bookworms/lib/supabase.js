@@ -65,7 +65,7 @@ export async function updateProfile(updates) {
   }
 }
 
-export async function uploadBooksToSupabase(query, maxResults = 40, sessionID) {
+export async function uploadBooksToSupabase(query, maxResults = 40) {
   let books = [];
   let startIndex = 0;
   const maxBooks = 10; // Set a limit to avoid too many requests

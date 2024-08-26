@@ -37,7 +37,7 @@ const Profile = () => {
     if (!session?.user) throw new Error('No user on the session!')
 
     // COMMENT THIS OUT LATER
-    uploadBooksToSupabase("harry+potter", 10)
+    // uploadBooksToSupabase("harry+potter", 10)
 
     const profile = await getProfile(session.user.id)
     console.log("Current Profile", profile)
@@ -256,7 +256,8 @@ const Profile = () => {
             </View>
 
             <View className="h-[90%] justify-center bg-accentdark">
-              <ReviewsView/>
+              <ReviewsView
+                userID={session.user.id}/>
             </View>
 
           </View>
