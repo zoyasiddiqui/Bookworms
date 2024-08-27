@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView } from 'react-native'
 import React from 'react'
-import icons from "../../../Bookworms/constants/icons.js"
+import icons from "../../constants/icons.js"
 import Review from './Review.jsx'
 import { NativeWindStyleSheet } from "nativewind"
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState, useEffect } from 'react'
-import { supabase, getProfile, updateProfile } from '../../lib/supabase'
-import { useGlobalContext } from "../../context/GlobalProvider"
+import { supabase, getProfile, updateProfile } from '../../lib/supabase.js'
+import { useGlobalContext } from "../../context/GlobalProvider.js"
 
 NativeWindStyleSheet.setOutput({
   default: "native",
