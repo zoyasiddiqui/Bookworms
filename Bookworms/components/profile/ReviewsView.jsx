@@ -14,6 +14,9 @@ NativeWindStyleSheet.setOutput({
 
 const ReviewsView = ({userID}) => {
 
+  const [reviews, setReviews] = useState([])
+
+
   async function getReviews(userID) {
 
     const { data: reviews, reviewError } = await supabase
@@ -26,21 +29,36 @@ const ReviewsView = ({userID}) => {
       return;
     }
 
-    return reviews
+    setReviews(reviews)
   }
 
-  getReviews(userID).then((reviews) => console.log(reviews))
+  useEffect(() => {
+    getReviews(userID);
+  }, [userID]);
+
+  console.log("Reviews", reviews)
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1}}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, flexShrink: 1}}>
         <TouchableOpacity 
-        className="justify-center items-center top-5">
+        className="justify-center items-center bg-accentdark pt-5 mb-5"
+        activeOpacity={0.4}>
             <Image
                 source={icons.plus}
                 className="w-8 h-8"
                 resizeMode="contain"
             />
         </TouchableOpacity>
+
+        {reviews.map((review, index) => (
+        <Review
+          key={index}
+          name={review.name}
+          description={review.review}
+          rating={review.rating}
+          bookID={review.book_id}
+        />
+      ))}
 
     </ScrollView>
   )

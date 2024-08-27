@@ -4,6 +4,8 @@ import search from "../assets/icons/search.png";
 import message from "../assets/icons/message.png";
 import settings from "../assets/icons/setting.png";
 import plus from "../assets/icons/plus.png";
+import fullStar from "../assets/icons/full-star.png";
+import emptyStar from "../assets/icons/empty-star.png";
 
 export default {
   eyeHide,
@@ -11,5 +13,7 @@ export default {
   search,
   message,
   settings,
-  plus
+  plus,
+  fullStar,
+  emptyStar
 };

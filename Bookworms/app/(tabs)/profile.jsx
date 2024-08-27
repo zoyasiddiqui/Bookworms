@@ -37,7 +37,7 @@ const Profile = () => {
     if (!session?.user) throw new Error('No user on the session!')
 
     // COMMENT THIS OUT LATER
-    // uploadBooksToSupabase("harry+potter", 10)
+    uploadBooksToSupabase("harry+potter", 10)
 
     const profile = await getProfile(session.user.id)
     console.log("Current Profile", profile)
@@ -181,13 +181,13 @@ const Profile = () => {
             {/* This will hold the profile picture, the followers and following stuff, and the tag */}
             <View className="flex-row justify-center items-center">
 
-            <Avatar size={80}
-                title={`${curUser.firstName[0]} ${curUser.lastName[0]}`} // for when user doesn't have a pfp
-                showEditButton={true}
-                containerStyle={styles.avatarContainer}
-                source={{uri: getProfilePic(curUser.avatar)}}
-                onPress={() => uploadAvatar()}
-            />
+              <Avatar size={80}
+                  title={`${curUser.firstName[0]} ${curUser.lastName[0]}`} // for when user doesn't have a pfp
+                  showEditButton={true}
+                  containerStyle={styles.avatarContainer}
+                  source={{uri: getProfilePic(curUser.avatar)}}
+                  onPress={() => uploadAvatar()}
+              />
 
               <View className="flex-row justify-center items-center">
                 <View className="flex-col justify-center items-center">
