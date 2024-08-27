@@ -16,7 +16,6 @@ const ReviewsView = ({userID}) => {
 
   const [reviews, setReviews] = useState([])
 
-
   async function getReviews(userID) {
 
     const { data: reviews, reviewError } = await supabase

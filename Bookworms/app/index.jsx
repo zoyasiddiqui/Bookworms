@@ -69,7 +69,7 @@ const index = () => {
               buttonColor={"bg-plight"}
               buttonPadding={"py-4"}
               buttonRound={true}
-              textSize={"text-xl"}
+              textSize={"text-xl pt-4"}
               textColor={"text-accentdark"}
               shadow={true}
             />
@@ -79,7 +79,7 @@ const index = () => {
               buttonColor={"bg-plight"}
               buttonPadding={"py-4"}
               buttonRound={true}
-              textSize={"text-xl"}
+              textSize={"text-xl pt-4"}
               textColor={"text-accentdark"}
               shadow={true}
             />
