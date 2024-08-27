@@ -1,7 +1,7 @@
 import 'react-native-url-polyfill/auto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createClient } from '@supabase/supabase-js';
-import { AppState } from 'react-native'
+import { AppState, Alert } from 'react-native'
 import axios from 'axios';
 
 // safe to be exposed because of Supabase's security
@@ -63,6 +63,44 @@ export async function updateProfile(updates) {
       Alert.alert(error.message)
     }
   }
+}
+
+export async function getFollowers(userId) {
+  let { count, error } = await supabase
+  .from('profile_relationships')
+  .select('*', { count: 'exact' })
+  .eq('following_id', userId) // userId is followed by follower_id
+
+  if (error) {
+    Alert.alert(error.message)
+    return 0
+  }
+  
+  if (count === null) {
+    Alert.alert('There was an error in retrieving your follower count.')
+    return 0
+  }
+
+  return count
+}
+
+export async function getFollowing(userId) {
+  let { count, error } = await supabase
+  .from('profile_relationships')
+  .select('*', { count: 'exact' })
+  .eq('follower_id', userId) // userId is a follower of following_id
+
+  if (error) {
+    Alert.alert(error.message)
+    return 0
+  }
+
+  if (count === null) {
+    Alert.alert('There was an error in retrieving your following count.')
+    return 0
+  }
+
+  return count
 }
 
 export async function uploadBooksToSupabase(query, maxResults = 40) {

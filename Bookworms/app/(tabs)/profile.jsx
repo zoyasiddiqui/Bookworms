@@ -5,7 +5,7 @@ import { Avatar } from 'react-native-elements';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NativeWindStyleSheet } from "nativewind";
 import { useState, useEffect } from 'react'
-import { supabase, getProfile, updateProfile, uploadBooksToSupabase } from '../../lib/supabase'
+import { supabase, getProfile, updateProfile, getFollowers, getFollowing, uploadBooksToSupabase } from '../../lib/supabase'
 import { useGlobalContext } from "../../context/GlobalProvider";
 import OpenButton from "../../../Bookworms/components/OpenButton";
 import Header from "../../../Bookworms/components/Header";
@@ -27,6 +27,8 @@ const Profile = () => {
     tag: 'Reader',
     avatar: null,
   })
+  const [followerCount, setFollowerCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
 
   useEffect(() => {
     if (session) getInfo()
@@ -37,7 +39,7 @@ const Profile = () => {
     if (!session?.user) throw new Error('No user on the session!')
 
     // COMMENT THIS OUT LATER
-    uploadBooksToSupabase("harry+potter", 10)
+    // uploadBooksToSupabase("harry+potter", 10)
 
     const profile = await getProfile(session.user.id)
     console.log("Current Profile", profile)
@@ -48,6 +50,9 @@ const Profile = () => {
       tag: 'Reader', // You might want to get this from the database as well if it's dynamic
       avatar: profile.avatar_url || null,
     });
+
+    setFollowerCount(getFollowers(session.user.id))
+    setFollowingCount(getFollowing(session.user.id))
   }
 
   // upload the image to supabase
@@ -191,11 +196,11 @@ const Profile = () => {
 
               <View className="flex-row justify-center items-center">
                 <View className="flex-col justify-center items-center">
-                  <Text className="font-inknutbold text-sm pt-2">45</Text>
+                  <Text className="font-inknutbold text-sm pt-2">{followerCount}</Text>
                   <Text className="font-inknutthin text-sm px-2 pt-2">Followers</Text>
                 </View>
                 <View className="flex-col justify-center items-center">
-                  <Text className="font-inknutbold text-sm pt-2">47</Text>
+                  <Text className="font-inknutbold text-sm pt-2">{followingCount}</Text>
                   <Text className="font-inknutthin text-sm px-2 pt-2">Following</Text>
                 </View>
 
