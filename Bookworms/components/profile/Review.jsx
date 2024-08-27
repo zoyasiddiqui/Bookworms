@@ -84,9 +84,12 @@ const Review = ({name, description, rating, bookID}) => {
       <View className="w-[70%] h-[80%] justify-end">
         <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
           <View className="flex-col ml-5 justify-start">
-            <Text className="font-inknutthin text-sm py-2 mt-4">
-              {`${title}`}
-            </Text>
+            <TouchableOpacity
+            activeOpacity={0.6}>
+              <Text className="font-inknutthin text-sm py-2 mt-4">
+                {`${title}`}
+              </Text>
+            </TouchableOpacity>
             <Text className="font-inknutbold text-base py-2">
               {`${name}`}
             </Text>
