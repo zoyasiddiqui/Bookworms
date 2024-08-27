@@ -173,20 +173,35 @@ const Profile = () => {
             />
           </TouchableOpacity>
 
-          <Header title={`${curUser.firstName} ${curUser.lastName}`}
-            font="font-bodoni"
-            size="text-2xl"
-            padding="py-2"
-            margin="mt-10 mb-5"
-          />
+          <View className="flex-col">
+            <Header title={`${curUser.firstName} ${curUser.lastName}`}
+              font="font-bodoni"
+              size="text-2xl"
+              padding="py-2"
+              margin="mt-6"
+            />
+
+            <OpenButton title={"Reader"}
+                  handlePress={getInfo}
+                  buttonSize={"w-20 mx-2 mb-5"}
+                  buttonColor={"bg-slight"}
+                  buttonPadding={""}
+                  buttonRound={true}
+                  textSize={"text-sm py-1"}
+                  textColor={"text-accentdark"}
+                  shadow={true}
+                  font={"font-bodoniitalic"}
+                />
+          </View>
+
 
           {/* This view will contain the title and the logo */}
           <View className="h-[20%] flex-col items-center justify-start flex-1">
 
             {/* This will hold the profile picture, the followers and following stuff, and the tag */}
-            <View className="flex-row justify-center items-center">
+            <View className="flex-row justify-between items-center">
 
-              <Avatar size={80}
+              <Avatar size={100}
                   title={`${curUser.firstName[0]} ${curUser.lastName[0]}`} // for when user doesn't have a pfp
                   showEditButton={true}
                   containerStyle={styles.avatarContainer}
@@ -194,30 +209,32 @@ const Profile = () => {
                   onPress={() => uploadAvatar()}
               />
 
-              <View className="flex-row justify-center items-center">
-                <View className="flex-col justify-center items-center">
-                  <Text className="font-inknutbold text-sm pt-2">{followerCount}</Text>
-                  <Text className="font-inknutthin text-sm px-2 pt-2">Followers</Text>
-                </View>
-                <View className="flex-col justify-center items-center">
-                  <Text className="font-inknutbold text-sm pt-2">{followingCount}</Text>
-                  <Text className="font-inknutthin text-sm px-2 pt-2">Following</Text>
+              <View className="flex-col">
+
+                <View className="flex-row justify-between items-center">
+                  <View className="flex-col justify-self-center items-center mx-5">
+                    <Text className="font-inknutbold text-sm pt-2">{followerCount}</Text>
+                    <Text className="font-inknutthin text-sm px-2 pt-2">Followers</Text>
+                  </View>
+                  <View className="flex-col justify-self-center items-center">
+                    <Text className="font-inknutbold text-sm pt-2">{followingCount}</Text>
+                    <Text className="font-inknutthin text-sm px-2 pt-2">Following</Text>
+                  </View>
                 </View>
 
-                <OpenButton title={"Reader"}
-                  handlePress={getInfo}
-                  buttonSize={"w-20 h-10 mx-2"}
+                <OpenButton title={"Follow"}
+                  onPress={() => setSelectedTab("Reviews")}
+                  buttonSize={"px-10"}
                   buttonColor={"bg-plight"}
-                  buttonPadding={"py-6"}
-                  buttonRound={true}
-                  textSize={"text-sm"}
+                  buttonPadding={""}
+                  textSize={"text-sm pt-4"}
                   textColor={"text-accentdark"}
-                  shadow={true}
+                  buttonRound={false}
+                  shadow={false}
+                  additionalStyling={"justify-self-center self-center"}
                 />
               </View>
-              
             </View>
-
 
           </View>
 
@@ -230,7 +247,7 @@ const Profile = () => {
                 buttonSize={"w-full h-[100%] px-10"}
                 buttonColor={"bg-plight"}
                 buttonPadding={""}
-                textSize={"text-sm"}
+                textSize={"text-sm pt-4"}
                 textColor={"text-accentdark"}
                 shadow={true}
                 additionalStyling={"flex-2"}
@@ -241,7 +258,7 @@ const Profile = () => {
                 buttonSize={"w-full h-[100%] px-10"}
                 buttonColor={"bg-plight"}
                 buttonPadding={""}
-                textSize={"text-sm"}
+                textSize={"text-sm pt-4"}
                 textColor={"text-accentdark"}
                 shadow={true}
                 additionalStyling={"flex-2"}
@@ -252,7 +269,7 @@ const Profile = () => {
                 buttonSize={"w-full h-[100%] px-10"}
                 buttonColor={"bg-plight"}
                 buttonPadding={""}
-                textSize={"text-sm"}
+                textSize={"text-sm pt-4"}
                 textColor={"text-accentdark"}
                 shadow={true}
                 additionalStyling={"flex-2"}
@@ -275,11 +292,11 @@ const Profile = () => {
 
 const styles = StyleSheet.create({
   avatarContainer: {
-    borderWidth: 1,        // Thickness of the border
-    borderColor: '#670A0A',
-    color: '#670A0A', // White border color
-    padding: 2,            // Optional: Adds some padding inside the border
-    margin: 10,
+    // borderWidth: 1,        // Thickness of the border
+    // borderColor: '#670A0A',
+    // color: '#670A0A', // White border color
+    // padding: 2,            // Optional: Adds some padding inside the border
+    marginRight: 20
   },
 })  
 

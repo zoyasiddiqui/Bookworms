@@ -127,7 +127,7 @@ const SignUp = () => {
           buttonColor={"bg-plight"}
           buttonPadding={"py-2"}
           buttonRound={true}
-          textSize={"text-base"}
+          textSize={"text-base pt-4"}
           textColor={"text-accentdark"}
         />
 

@@ -79,7 +79,7 @@ const Login = () => {
         buttonColor={"bg-plight"}
         buttonPadding={"py-6"}
         buttonRound={true}
-        textSize={"text-base"}
+        textSize={"text-base pt-4"}
         textColor={"text-accentdark"}
       />
 

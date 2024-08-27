@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useGlobalContext } from "../context/GlobalProvider";
 
-const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding, buttonRound, textSize, textColor, shadow, additionalStyling}) => {
+const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding, buttonRound, textSize, textColor, shadow, font='font-inknut', additionalStyling}) => {
     const {loading, setLoading, uploading, setUploading} = useGlobalContext();
 
     return(
@@ -18,7 +18,7 @@ const OpenButton = ({title, handlePress, buttonSize, buttonColor, buttonPadding,
                     disabled={loading || uploading}
             >
 
-                <Text className={`font-inknut justify-center items-center pt-4
+                <Text className={`${font} justify-center items-center
                     ${textSize}
                     ${textColor}`}>
                     { title }
