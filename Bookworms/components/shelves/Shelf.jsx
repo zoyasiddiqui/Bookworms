@@ -8,7 +8,7 @@ const Shelf = ({title, shelfID}) => {
 
   const [books, setBooks] = useState([])
   const [bookTitle, setTitle] = useState('')
-  const [bookCover, setCover] = useState('')
+  const [bookCover, setCover] = useState('https://via.placeholder.com/128x195/?text=+') // placeholder while page loads to avoid error
 
   async function getBooks(shelfID) {
     const { data: books, getBooksError } = await supabase

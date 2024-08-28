@@ -29,6 +29,7 @@ const ShelvesView = ({userID}) => {
   }, [userID]);
 
   return (
+    // flexShrink: 1 in android causes scrolling to not work so the 2nd shelf cuts off at the bottom
     <ScrollView contentContainerStyle={{ flexGrow: 1, flexShrink: 1 }}>
       <TouchableOpacity 
       className="justify-center items-center pt-5 mb-5"

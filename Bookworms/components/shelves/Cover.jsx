@@ -5,7 +5,7 @@ import { supabase } from '../../lib/supabase'
 
 const Cover = ({bookID}) => {
 
-  const [cover, setCover] = useState('')  
+  const [cover, setCover] = useState('https://via.placeholder.com/128x195/?text=+')
 
   async function getCover(bookID) {
     const { data, error } = await supabase
@@ -26,7 +26,7 @@ const Cover = ({bookID}) => {
     getCover(bookID);
   }, [bookID]);
 
-  console.log("Sover", cover)
+  console.log("Cover", cover)
 
   return (
     <TouchableOpacity

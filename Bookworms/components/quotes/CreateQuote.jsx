@@ -1,10 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export default function CreateQuote() {
+function CreateQuote() {
   return (
     <View>
       <Text>CreateQuote</Text>
     </View>
   )
 }
+
+export default CreateQuote
