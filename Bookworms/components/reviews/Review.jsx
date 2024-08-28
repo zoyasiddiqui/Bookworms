@@ -52,7 +52,7 @@ const Review = ({name, description, rating, bookID}) => {
     <View className="flex-row flex-1 border-t">
 
       <View className="w-[30%] h-[80%]">
-        <View className="flex-col items-center justify-start">
+        <View className="flex-col items-center justify-start ml-2">
           <TouchableOpacity className="my-2">
             <Image
               source={{uri: cover}}
@@ -86,11 +86,11 @@ const Review = ({name, description, rating, bookID}) => {
           <View className="flex-col ml-5 justify-start">
             <TouchableOpacity
             activeOpacity={0.6}>
-              <Text className="font-inknutthin text-sm py-2 mt-4">
+              <Text className="font-inknutthin text-sm py-2 mt-4 px-1">
                 {`${title}`}
               </Text>
             </TouchableOpacity>
-            <Text className="font-inknutbold text-base py-2">
+            <Text className="font-inknutbold text-base py-2 px-1">
               {`${name}`}
             </Text>
             <Text className="font-inknutthin text-sm py-1 px-1">
