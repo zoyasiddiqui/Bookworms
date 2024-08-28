@@ -223,7 +223,7 @@ const Profile = () => {
                   </View>
                 </View>
 
-                <OpenButton title={"Follow"}
+                <OpenButton title={"Edit Profile"}
                   buttonSize={"px-10"}
                   buttonColor={"bg-plight"}
                   buttonPadding={""}
