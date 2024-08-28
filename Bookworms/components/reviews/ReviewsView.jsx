@@ -12,7 +12,7 @@ NativeWindStyleSheet.setOutput({
   default: "native",
 });
 
-const ReviewsView = ({userID}) => {
+const ReviewsView = ({userID, handleClick}) => {
 
   const [reviews, setReviews] = useState([])
 
@@ -35,13 +35,12 @@ const ReviewsView = ({userID}) => {
     getReviews(userID);
   }, [userID]);
 
-  console.log("Reviews", reviews)
-
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1, flexShrink: 1}}>
         <TouchableOpacity 
         className="justify-center items-center bg-accentdark pt-5 mb-5"
-        activeOpacity={0.4}>
+        activeOpacity={0.4}
+        onPress={handleClick}>
             <Image
                 source={icons.plus}
                 className="w-8 h-8"

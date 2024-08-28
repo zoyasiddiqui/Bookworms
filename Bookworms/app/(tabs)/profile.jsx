@@ -9,8 +9,9 @@ import { supabase, getProfile, updateProfile, getFollowers, getFollowing, upload
 import { useGlobalContext } from "../../context/GlobalProvider";
 import OpenButton from "../../../Bookworms/components/OpenButton";
 import Header from "../../../Bookworms/components/Header";
-import ReviewsView from "../../../Bookworms/components/profile/ReviewsView.jsx";
+import ReviewsView from "../../../Bookworms/components/reviews/ReviewsView.jsx";
 import icons from "../../../Bookworms/constants/icons.js";
+import { Redirect, router } from "expo-router";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -278,8 +279,26 @@ const Profile = () => {
             </View>
 
             <View className="h-[90%] justify-center bg-accentdark">
+            {selectedTab === "Reviews" && (
               <ReviewsView
-                userID={session.user.id}/>
+                userID={session.user.id}
+                handleClick={() => {router.push("../reviews/create_review")}}
+              />
+            )}
+
+            {selectedTab === "Shelves" && (
+              <ReviewsView
+                userID={session.user.id}
+                handleClick={() => {router.push("../reviews/create_review")}}
+              />
+            )}
+
+            {selectedTab === "Quotes" && (
+              <ReviewsView
+                userID={session.user.id}
+                handleClick={() => {router.push("../reviews/create_review")}}
+              />
+            )}
             </View>
 
           </View>
