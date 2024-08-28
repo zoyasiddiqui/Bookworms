@@ -9,6 +9,8 @@ const FormField = ({
   placeholder,
   handleChangeText,
   otherStyles,
+  multilineVal, 
+  numOfLines = 0,
   ...props
 }) => {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,6 +26,8 @@ const FormField = ({
           value={value}
           placeholder={placeholder}
           placeholderTextColor="#7B7B8B"
+          multiline={multilineVal ? true : false}
+          numberOfLines={numOfLines}
           onChangeText={handleChangeText}
           secureTextEntry={(title === "Password" || title === "Confirm Password") && !showPassword}
           editable={!(loading || uploading)}
