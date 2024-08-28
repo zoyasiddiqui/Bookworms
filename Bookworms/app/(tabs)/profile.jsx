@@ -12,6 +12,7 @@ import Header from "../../../Bookworms/components/Header";
 import ReviewsView from "../../../Bookworms/components/reviews/ReviewsView.jsx";
 import icons from "../../../Bookworms/constants/icons.js";
 import { Redirect, router } from "expo-router";
+import ShelvesView from "../../components/shelves/ShelvesView.jsx";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -223,7 +224,6 @@ const Profile = () => {
                 </View>
 
                 <OpenButton title={"Follow"}
-                  onPress={() => setSelectedTab("Reviews")}
                   buttonSize={"px-10"}
                   buttonColor={"bg-plight"}
                   buttonPadding={""}
@@ -243,7 +243,7 @@ const Profile = () => {
             <View className="flex-row h-[10%] justify-center">
               
               <OpenButton title={"Reviews"}
-                onPress={() => setSelectedTab("Reviews")}
+                handlePress={() => setSelectedTab("Reviews")}
                 buttonSize={"w-full h-[100%] px-10"}
                 buttonColor={"bg-plight"}
                 buttonPadding={""}
@@ -254,7 +254,7 @@ const Profile = () => {
               />
               
               <OpenButton title={"Shelves"}
-                onPress={() => setSelectedTab("Shelves")}
+                handlePress={() => setSelectedTab("Shelves")}
                 buttonSize={"w-full h-[100%] px-10"}
                 buttonColor={"bg-plight"}
                 buttonPadding={""}
@@ -265,7 +265,7 @@ const Profile = () => {
               />
 
               <OpenButton title={"Quotes"}
-                onPress={() => setSelectedTab("Quotes")}
+                handlePress={() => setSelectedTab("Quotes")}
                 buttonSize={"w-full h-[100%] px-10"}
                 buttonColor={"bg-plight"}
                 buttonPadding={""}
@@ -286,9 +286,8 @@ const Profile = () => {
             )}
 
             {selectedTab === "Shelves" && (
-              <ReviewsView
+              <ShelvesView
                 userID={session.user.id}
-                handleClick={() => {router.push("../reviews/create_review")}}
               />
             )}
 
