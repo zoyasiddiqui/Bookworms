@@ -34,7 +34,7 @@ AppState.addEventListener('change', (state) => {
 export async function getProfile(userId) {
   const { data: profile, error: profileRetrievalError, } = await supabase
   .from("profiles")
-  .select('first_name, last_name, avatar_url')
+  .select('*') // get all columns
   .eq('id', userId)
   .single(); // Expecting a single row since id is unique
 
@@ -65,42 +65,33 @@ export async function updateProfile(updates) {
   }
 }
 
+// modified this so it just returns the ids of all followers for future use
 export async function getFollowers(userId) {
-  let { count, error } = await supabase
+  let { data: profile_relationships, error } = await supabase
   .from('profile_relationships')
-  .select('*', { count: 'exact' })
+  .select('follower_id')
   .eq('following_id', userId) // userId is followed by follower_id
 
   if (error) {
     Alert.alert(error.message)
-    return 0
-  }
-  
-  if (count === null) {
-    Alert.alert('There was an error in retrieving your follower count.')
-    return 0
+    return
   }
 
-  return count
+  return profile_relationships
 }
 
 export async function getFollowing(userId) {
-  let { count, error } = await supabase
+  let { data: profile_relationships, error } = await supabase
   .from('profile_relationships')
-  .select('*', { count: 'exact' })
+  .select('following_id')
   .eq('follower_id', userId) // userId is a follower of following_id
 
   if (error) {
     Alert.alert(error.message)
-    return 0
+    return
   }
 
-  if (count === null) {
-    Alert.alert('There was an error in retrieving your following count.')
-    return 0
-  }
-
-  return count
+  return profile_relationships
 }
 
 export async function uploadBooksToSupabase(query, maxResults = 40) {

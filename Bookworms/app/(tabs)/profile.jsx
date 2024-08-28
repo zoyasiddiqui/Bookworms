@@ -27,9 +27,9 @@ const Profile = () => {
     lastName: '',
     tag: 'Reader',
     avatar: null,
+    followerCount: 0,
+    followingCount: 0
   })
-  const [followerCount, setFollowerCount] = useState(0);
-  const [followingCount, setFollowingCount] = useState(0);
 
   useEffect(() => {
     if (session) getInfo()
@@ -50,10 +50,9 @@ const Profile = () => {
       lastName: profile.last_name || 'Last',
       tag: 'Reader', // You might want to get this from the database as well if it's dynamic
       avatar: profile.avatar_url || null,
+      followerCount: profile.follower_count || 0,
+      followingCount: profile.following_count || 0
     });
-
-    setFollowerCount(getFollowers(session.user.id))
-    setFollowingCount(getFollowing(session.user.id))
   }
 
   // upload the image to supabase
@@ -214,11 +213,11 @@ const Profile = () => {
 
                 <View className="flex-row justify-between items-center">
                   <View className="flex-col justify-self-center items-center mx-5">
-                    <Text className="font-inknutbold text-sm pt-2">{followerCount}</Text>
+                    <Text className="font-inknutbold text-sm pt-2">{curUser.followerCount}</Text>
                     <Text className="font-inknutthin text-sm px-2 pt-2">Followers</Text>
                   </View>
                   <View className="flex-col justify-self-center items-center">
-                    <Text className="font-inknutbold text-sm pt-2">{followingCount}</Text>
+                    <Text className="font-inknutbold text-sm pt-2">{curUser.followingCount}</Text>
                     <Text className="font-inknutthin text-sm px-2 pt-2">Following</Text>
                   </View>
                 </View>
