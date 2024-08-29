@@ -36,8 +36,8 @@ Deployment coming soon.
 
 ### The Story
 Zoya and Renee are third year Computer Science Specialists at the University of Toronto, Mississauga, and this summer they were looking to learn about app development and get creative. Zoya and Renee are both big readers, and they've been looking for an app where they could share this love of reading for a while. On a hot summer day, in the middle of Toronto, Bookworms was born. After the initial ideation, their biggest obstacle was learning all about the languages and frameworks they would have to work with. While it was a daunting task, and the app's features are far from finished, they have learned a ton about React Native, app development, databases, APIs, and frontend styling, and are excited to continue working on this app. 
-![link](https://github.com/zoyasiddiqui)
-![link](https://github.com/renee-k)
+[Zoya Siddiqui's Github](https://github.com/zoyasiddiqui)
+[Renee Khan's Github](https://github.com/renee-k)
 
 ### Future 
 
