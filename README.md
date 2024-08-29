@@ -14,9 +14,9 @@ Bookworms is a goodreads-instagram cross, designed for readers to find and share
 
 ### Screenshots
 <img src="https://github.com/user-attachments/assets/6ae731df-d72b-4b3b-934b-300c0596d37b" height="300">
-![unnamed](https://github.com/user-attachments/assets/7016478f-506b-4e3c-a713-e43d49962b2a)
-![unnamed](https://github.com/user-attachments/assets/5311a97e-3439-49e6-abdf-3e142a684185)
-![unnamed](https://github.com/user-attachments/assets/5a17e913-4a61-4fc5-a732-8c5e861a1ee5)
+<img src="https://github.com/user-attachments/assets/7016478f-506b-4e3c-a713-e43d49962b2a" height="300">
+<img src="https://github.com/user-attachments/assets/5311a97e-3439-49e6-abdf-3e142a684185" height="300">
+<img src="https://github.com/user-attachments/assets/5a17e913-4a61-4fc5-a732-8c5e861a1ee5" height="300">
 
 ## About the Development
 
