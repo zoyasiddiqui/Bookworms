@@ -1,8 +1,6 @@
 # Bookworms
 A social media app designed with react native, for book-lovers and authors!
 
-## Table of Contents
-
 ## About the App
 Bookworms is a goodreads-instagram cross, designed for readers to find and share about new books, and authors to get to know their readership. 
 
@@ -42,4 +40,9 @@ Zoya and Renee are third year Computer Science Specialists at the University of 
 [Renee Khan's Github](https://github.com/renee-k)
 
 ### Future 
-
+- Reviews: Give users the ability to create reviews and view full page reviews. Users can like and comment on each other's reviews.
+- Shelves: Give users the ability to create shelves and view full page shelves. Users can save other people's shelves. 
+- Quotes: Give users the ability to create quotes and view full page quotes. Users can like and reply to each other's quotes. 
+- Explore: A netflix style explore page where users can browse and find the most popular reviews, shelves, quotes, and books.
+- Search: On the explore page, users will find a search bar that they can use to search for reviews, shelves, quotes, books, and profiles.
+- Messaging: Users can text each other, one on one and in groupchats.
