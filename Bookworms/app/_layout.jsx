@@ -12,9 +12,9 @@ const RootLayout = () => {
     "Bodoni": require("../assets/fonts/BodoniModa_18pt-Regular.ttf"),
     "Bodoni-Bold": require("../assets/fonts/BodoniModa_18pt-Bold.ttf"),
     "Bodoni-Italic": require("../assets/fonts/BodoniModa_18pt-SemiBoldItalic.ttf"),
-    "Inknut": require("../assets/fonts/InknutAntiqua-Regular.ttf"),
-    "Inknut-Light": require("../assets/fonts/InknutAntiqua-Light.ttf"),
-    "Inknut-Bold": require("../assets/fonts/InknutAntiqua-SemiBold.ttf"),
+    "Inknut": require("../assets/fonts/SUSE-ExtraLight.ttf"),
+    "Inknut-Light": require("../assets/fonts/SUSE-Thin.ttf"),
+    "Inknut-Bold": require("../assets/fonts/SUSE-Light.ttf"),
   });
 
   useEffect(() => {
