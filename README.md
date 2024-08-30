@@ -15,6 +15,14 @@ Bookworms is a cross-platform social media app designed with React Native. On Bo
 <img src="https://github.com/user-attachments/assets/5311a97e-3439-49e6-abdf-3e142a684185" height="300">
 <img src="https://github.com/user-attachments/assets/5a17e913-4a61-4fc5-a732-8c5e861a1ee5" height="300">
 
+### Future 
+- Reviews: Give users the ability to create reviews and view full page reviews. Users can like and comment on each other's reviews.
+- Shelves: Give users the ability to create shelves and view full page shelves. Users can save other people's shelves. 
+- Quotes: Give users the ability to create quotes and view full page quotes. Users can like and reply to each other's quotes. 
+- Explore: A netflix style explore page where users can browse and find the most popular reviews, shelves, quotes, and books.
+- Search: On the explore page, users will find a search bar that they can use to search for reviews, shelves, quotes, books, and profiles.
+- Messaging: Users can text each other, one on one and in groupchats.
+
 ## About the Development
 
 ### Software Breakdown
@@ -30,18 +38,10 @@ Bookworms is a cross-platform social media app designed with React Native. On Bo
 Deployment coming soon.
 
 ## About the Authors
-
-### The Story
 Zoya and Renee are third year Computer Science Specialists at the University of Toronto, Mississauga, and this summer they were looking to learn about app development and get creative. Zoya and Renee are both big readers, and they've been looking for an app where they could share this love of reading for a while. On a hot summer day, in the middle of Toronto, Bookworms was born. After the initial ideation, their biggest obstacle was learning all about the languages and frameworks they would have to work with. While it was a daunting task, and the app's features are far from finished, they have learned a ton about React Native, app development, databases, APIs, and frontend styling, and are excited to continue working on this app. 
 
 [Zoya Siddiqui's Github](https://github.com/zoyasiddiqui)
 
 [Renee Khan's Github](https://github.com/renee-k)
 
-### Future 
-- Reviews: Give users the ability to create reviews and view full page reviews. Users can like and comment on each other's reviews.
-- Shelves: Give users the ability to create shelves and view full page shelves. Users can save other people's shelves. 
-- Quotes: Give users the ability to create quotes and view full page quotes. Users can like and reply to each other's quotes. 
-- Explore: A netflix style explore page where users can browse and find the most popular reviews, shelves, quotes, and books.
-- Search: On the explore page, users will find a search bar that they can use to search for reviews, shelves, quotes, books, and profiles.
-- Messaging: Users can text each other, one on one and in groupchats.
+
