@@ -1,8 +1,7 @@
 # Bookworms
-A social media app designed with react native, for book-lovers and authors!
+Bookworms is a cross-platform social media app designed with React Native. On Bookworms, book-lovers and authors can find new books, create shelves, talk to each other about books, and more. 
 
 ## About the App
-Bookworms is a goodreads-instagram cross, designed for readers to find and share about new books, and authors to get to know their readership. 
 
 ### Features
 1. Profile : Users can signup/login to their profile, and then upload an avatar, pick a name, and choose from a tag (readers, authors, publishers). Users are prompted to verify their emails to finish the signup process, for security. Users can follow each other, and their follower & following count is displayed on their profile. 
