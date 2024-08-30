@@ -13,6 +13,7 @@ import ReviewsView from "../../../Bookworms/components/reviews/ReviewsView.jsx";
 import icons from "../../../Bookworms/constants/icons.js";
 import { Redirect, router } from "expo-router";
 import ShelvesView from "../../components/shelves/ShelvesView.jsx";
+import QuotesView from "../../components/quotes/QuotesView.jsx";
 
 NativeWindStyleSheet.setOutput({
   default: "native",
@@ -292,9 +293,9 @@ const Profile = () => {
             )}
 
             {selectedTab === "Quotes" && (
-              <ReviewsView
+              <QuotesView
                 userID={session.user.id}
-                handleClick={() => {router.push("../reviews/create_review")}}
+                handleClick={() => {router.push("../reviews/create_review")}} // CHANGE LATER
               />
             )}
             </View>

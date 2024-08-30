@@ -7,7 +7,8 @@ import icons from '../../constants/icons'
 const Review = ({name, description, rating, bookID}) => {
 
   const [title, setTitle]  = useState('')
-  const [cover, setCover] = useState('')
+  // added a blank placeholder image as default to avoid the empty string error on android
+  const [cover, setCover] = useState('https://via.placeholder.com/128x195/?text=+')
 
   async function getBookTitle(bookID) {
     const { data: bookTitle, error } = await supabase.from('books')
