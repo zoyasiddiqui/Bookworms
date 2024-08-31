@@ -5,7 +5,7 @@ import { Avatar } from 'react-native-elements';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NativeWindStyleSheet } from "nativewind";
 import { useState, useEffect } from 'react'
-import { supabase, getProfile, updateProfile, getFollowers, getFollowing, uploadBooksToSupabase } from '../../lib/supabase'
+import { supabase, getProfile, updateProfile, getProfilePic, getFollowers, getFollowing, uploadBooksToSupabase } from '../../lib/supabase'
 import { useGlobalContext } from "../../context/GlobalProvider";
 import OpenButton from "../../../Bookworms/components/OpenButton";
 import Header from "../../../Bookworms/components/Header";
@@ -54,7 +54,7 @@ const Profile = () => {
     setCurUser({
       firstName: profile.first_name || 'First',
       lastName: profile.last_name || 'Last',
-      tag: 'Reader', // You might want to get this from the database as well if it's dynamic
+      tag: profile.tag || 'Reader',
       avatar: profile.avatar_url || null,
       followerCount: profile.follower_count || 0,
       followingCount: profile.following_count || 0
@@ -150,17 +150,6 @@ const Profile = () => {
     } finally {
       setUploading(false)
     }
-  } 
-
-  function getProfilePic(path) {
-      const { data, error } = supabase.storage.from('avatars').getPublicUrl(path)
-
-      if (error) {
-        console.log('Error getting profile pic: ', error.message)
-        Alert.alert(error.message)
-      }
-
-      return data.publicUrl
   }
 
   return (

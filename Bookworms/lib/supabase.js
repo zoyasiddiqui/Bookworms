@@ -65,6 +65,18 @@ export async function updateProfile(updates) {
   }
 }
 
+export function getProfilePic(path) {
+  const { data, error } = supabase.storage.from('avatars').getPublicUrl(path)
+
+  if (error) {
+    console.log('Error getting profile pic: ', error.message)
+    Alert.alert(error.message)
+    return
+  }
+
+  return data.publicUrl
+}
+
 // modified this so it just returns the ids of all followers for future use
 export async function getFollowers(userId) {
   let { data: profile_relationships, error } = await supabase

@@ -23,7 +23,7 @@ const QuotesView = ({userID, handleClick}) => {
       return;
     }
 
-    setQuotes(quotes)
+    setQuotes(quotes || [])
   }
 
   useEffect(() => {
