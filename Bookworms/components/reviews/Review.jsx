@@ -1,52 +1,32 @@
 import { StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from 'react-native'
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { supabase } from '../../lib/supabase'
+import { getBook } from '../../lib/supabase'
+import { useGlobalContext } from "../../context/GlobalProvider";
 import icons from '../../constants/icons'
 
 const Review = ({name, description, rating, bookID}) => {
-
-  const [title, setTitle]  = useState('')
   // added a blank placeholder image as default to avoid the empty string error on android
-  const [cover, setCover] = useState('https://via.placeholder.com/128x195/?text=+')
+  const {coverPlaceholder} = useGlobalContext();
 
-  async function getBookTitle(bookID) {
-    const { data: bookTitle, error } = await supabase.from('books')
-    .select('name')
-    .eq('id', bookID)
-    .single()
+  const [cover, setCover] = useState(coverPlaceholder)
+  const [title, setTitle]  = useState('')
 
-    if (error) {
-      Alert.alert(error)
-      return;
-    }
+  async function getBookInfo(bookID) {
+    const book = await getBook(bookID)
 
-    setTitle(bookTitle.name)
+    // return if error (Alert done in getBook)
+    if (book === null) return
+
+    setTitle(book.name)
+    setCover(book.thumbnail_url)
   }
-
-  async function getBookImage(bookID) {
-    const { data: bookCover, error } = await supabase.from('books')
-    .select('thumbnail_url')
-    .eq('id', bookID)
-    .single()
-
-    if (error) {
-      console.error(error)
-      return;
-    }
-
-    setCover(bookCover.thumbnail_url)
-  }
-
+  
   console.log("Title",title)
   console.log("Image URL", cover)
 
   useEffect(() => {
-    getBookTitle(bookID);
-  }, [bookID]);
-
-  useEffect(() => {
-    getBookImage(bookID);
+    getBookInfo(bookID);
   }, [bookID]);
 
   return (

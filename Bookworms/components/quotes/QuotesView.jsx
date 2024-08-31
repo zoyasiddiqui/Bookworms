@@ -45,7 +45,11 @@ const QuotesView = ({userID, handleClick}) => {
         </TouchableOpacity>
 
         {quotes.map((quote, index) => (
-        <Quote/>
+        <Quote
+          key={index}
+          userID={userID}
+          quote={quote.quote}
+        />
       ))}
 
     </ScrollView>

@@ -21,10 +21,12 @@ const GlobalProvider = ({ children }) => {
         setSession(session)
       })
     }, [])
+    
+    const coverPlaceholder = 'https://dummyimage.com/128x195/b5b5b5/b5b5b5.png&text=+';
 
     return (
         <GlobalContext.Provider 
-            value={{session, setSession, uploading, setUploading, loading, setLoading}}
+            value={{session, setSession, uploading, setUploading, loading, setLoading, coverPlaceholder}}
         >
             {children}
         </GlobalContext.Provider>

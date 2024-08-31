@@ -45,6 +45,10 @@ const Profile = () => {
     // uploadBooksToSupabase("harry+potter", 10)
 
     const profile = await getProfile(session.user.id)
+    
+    // return if error (alert done in getProfile)
+    if (profile === null) return
+    
     console.log("Current Profile", profile)
 
     setCurUser({

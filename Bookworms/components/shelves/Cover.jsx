@@ -1,25 +1,20 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { supabase } from '../../lib/supabase'
+import { getBook } from '../../lib/supabase'
+import { useGlobalContext } from "../../context/GlobalProvider";
 
 const Cover = ({bookID}) => {
-
-  const [cover, setCover] = useState('https://via.placeholder.com/128x195/?text=+')
+  const {coverPlaceholder} = useGlobalContext();
+  const [cover, setCover] = useState(coverPlaceholder)
 
   async function getCover(bookID) {
-    const { data, error } = await supabase
-        .from('books')
-        .select('thumbnail_url')
-        .eq('id', bookID)
-        .single()
+    const book = await getBook(bookID)
 
-    if (error) {
-        Alert.alert(error)
-        return;
-    }
+    // return if error (Alert done in getBook)
+    if (book === null) return
 
-    setCover(data.thumbnail_url)
+    setCover(book.thumbnail_url)
   }  
 
   useEffect(() => {

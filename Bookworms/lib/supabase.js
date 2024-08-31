@@ -145,3 +145,18 @@ export async function uploadBooksToSupabase(query, maxResults = 40) {
   }
 
 }
+
+export async function getBook(bookID) {
+  const { data: book, bookError } = await supabase
+  .from('books')
+  .select('*')
+  .eq('id', bookID)
+  .single()
+
+  if (bookError) {
+    Alert.alert(bookError)
+    return;
+  }
+
+  return book
+}

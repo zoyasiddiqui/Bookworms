@@ -1,14 +1,16 @@
 import { Alert, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { supabase } from '../../lib/supabase'
+import { getBook, supabase } from '../../lib/supabase'
+import { useGlobalContext } from "../../context/GlobalProvider";
 import Cover from './Cover'
 
 const Shelf = ({title, shelfID}) => {
+  const {coverPlaceholder} = useGlobalContext();
 
   const [books, setBooks] = useState([])
-  const [bookTitle, setTitle] = useState('')
-  const [bookCover, setCover] = useState('https://via.placeholder.com/128x195/?text=+') // placeholder while page loads to avoid error
+  const [bookTitle, setTitle] = useState('')  
+  const [cover, setCover] = useState(coverPlaceholder)
 
   async function getBooks(shelfID) {
     const { data: books, getBooksError } = await supabase
@@ -25,16 +27,10 @@ const Shelf = ({title, shelfID}) => {
   }
 
   async function getBookInfo(bookID) {
-    const { data: book, bookError } = await supabase
-      .from('books')
-      .select('name, thumbnail_url')
-      .eq('book_id', bookID)
-      .single()
+    const book = await getBook(bookID)
 
-    if (bookError) {
-      Alert.alert(bookError)
-      return;
-    }
+    // return if error (Alert done in getBook)
+    if (book === null) return
 
     setTitle(book.name)
     setCover(book.thumbnail_url)
