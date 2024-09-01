@@ -23,7 +23,7 @@ const Quote = ({userID, quote}) => {
   return (
     <View className="flex-row flex-1 border-t">
         {/* This view contains profile information */}
-        <View className="w-[100%] h-[25%]">
+        <View className="w-full h-[25%]">
           <View className="flex-row justify-start items-center ml-1 mt-1">
           <Avatar size={45}
                   title={profile? `${profile.first_name[0]} ${profile.last_name[0]}` : 'F L'}
@@ -34,11 +34,11 @@ const Quote = ({userID, quote}) => {
           <Text className='font-inknutbold'>{profile ? profile.first_name + ' ' + profile.last_name : 'First Last'}</Text>
 
           <OpenButton title={profile? profile.tag : 'Reader'}
-                  buttonSize={"w-20 ml-2"}
+                  buttonSize={"w-16 ml-2"}
                   buttonColor={"bg-slight"}
                   buttonPadding={""}
                   buttonRound={true}
-                  textSize={"text-sm py-1"}
+                  textSize={"text-xs py-1"}
                   textColor={"text-accentdark"}
                   shadow={true}
                   font={"font-bodoniitalic"}
@@ -46,9 +46,9 @@ const Quote = ({userID, quote}) => {
           </View>
         </View>
         {/* This will contain the quote */}
-        <View className='w-[100%] h-[75%] border-2'>
+        <View className='absolute bottom-0 w-full h-[75%]'>
           <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-              <Text className="font-inknutthin text-sm py-2 mt-4 px-1">{quote}</Text>
+              <Text className="font-inknutthin text-sm mt-2 py-1 px-1">{quote}</Text>
           </ScrollView>
         </View>
         {/* Maybe another view at the bottom for other things like book the user is referencing? and in future would have likes and stuff */}

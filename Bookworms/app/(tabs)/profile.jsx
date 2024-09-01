@@ -198,7 +198,7 @@ const Profile = () => {
 
               <Avatar size={100}
                   title={`${curUser.firstName[0]} ${curUser.lastName[0]}`} // for when user doesn't have a pfp
-                  showEditButton={true}
+                  showEditButton={true} // this never did anything, don't know why it doesn't work
                   containerStyle={styles.avatarContainer}
                   source={{uri: getProfilePic(curUser.avatar)}}
                   onPress={() => uploadAvatar()}
