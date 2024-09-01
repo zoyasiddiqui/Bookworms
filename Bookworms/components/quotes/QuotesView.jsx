@@ -49,6 +49,7 @@ const QuotesView = ({userID, handleClick}) => {
           key={index}
           userID={userID}
           quote={quote.quote}
+          quoteID={quote.id}
         />
       ))}
 

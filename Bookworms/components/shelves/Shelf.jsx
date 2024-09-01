@@ -23,7 +23,7 @@ const Shelf = ({title, shelfID}) => {
       return;
     }
 
-    setBooks(books)
+    setBooks(books || [])
   }
 
   async function getBookInfo(bookID) {
@@ -37,7 +37,7 @@ const Shelf = ({title, shelfID}) => {
   }
 
   useEffect(() => {
-    getBooks(shelfID);
+    if (shelfID) getBooks(shelfID);
   }, [shelfID]);
 
   console.log("BOOKS", books)
